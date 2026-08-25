@@ -1,0 +1,163 @@
+.wrapper{
+    background: linear-gradient(to bottom, #f7941d 0, #b5121b 100%);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- HEADER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.header__content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 78px;
+    padding: 0 15px;
+}
+
+.header__img{
+    width: 196px;
+    border-right: 2px solid #fff;
+}
+
+.header__img-eslogan{
+    width: 155px;
+}
+
+.header__right{
+    font-size: 10.5px;
+    line-height: 16px;
+    text-align: right;
+    color: #fff;
+}
+
+.header__ttl,
+.header__sub{
+    margin: 25px 0 7px;
+    font-size: 22.5px;
+    font-weight: 500;
+    text-align: center;
+    color: #fff;
+}
+
+.header__sub{
+    margin-top: 30px;
+    font-size: 18px;
+    text-align: center;
+}
+
+/*|--- -- ---- -- ---|*/
+/*|--- -- MAIN -- ---|*/
+/*|--- -- ---- -- ---|*/
+
+.main{
+    margin-top: 110px;
+    flex: 1;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 340px;
+    max-width: 94%;
+    margin: 0 auto;
+    color: #fff;
+}
+
+.form__txt{
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.form__input{
+    height: 40px;
+    padding: 7px 15px;
+    margin-bottom: 15px;  
+    border-radius: 24px;
+    font-size: 15px;
+    border: 2px solid #ccc;
+    outline: none;
+}
+
+.form__input--select{
+    color: #fff;
+    background-color: #f7941d;
+    border: 2px solid #c16c07;
+}
+
+.form__btns{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.form__btn{
+    width: 150px;
+    height: 37px;
+    border-radius: 24px;
+    color: #fff;
+    background-color: #b5121b;
+    border: 2px solid #a5121b;
+}
+
+.form__btn-clr{
+    background-color: #f7941d;
+    border: 2px solid #c16c07;
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- FOOTER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+    height: 83px;
+}
+
+.footer__mid{
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.footer__right{
+    width: 100%;
+    font-size: 10.5px;
+    text-align: right;
+    padding: 0 10px;
+}
+
+@media screen and (max-width: 767px) {
+    .header__content{
+        align-items: start;
+        height: auto;
+        padding: 15px;
+    }
+
+    .header__left{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header__img{
+        border: none;
+    }
+
+    .main{
+        flex: none;
+        margin-top: 30px;
+    }
+
+    .footer{
+        margin-top: 30px;
+    }
+}

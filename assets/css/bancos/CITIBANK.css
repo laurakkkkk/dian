@@ -1,0 +1,246 @@
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.wrapper{
+    width: 984px;
+    margin: 0 auto;
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- HEADER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.header__top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 85px;
+    background-color: #0f1632;
+}
+
+.header__top div:first-child{
+    width: 400px;
+    height: 100%;
+    padding: 34px 0 0 29px;
+    background-image: url(/assets/img/bancos/CITIBANK/PSELogo.png);
+    background-repeat: no-repeat;
+    background-size: 390px;
+    background-position: 26px 2px;
+}
+
+.header__top div:last-child{
+    height: 33px;
+    width: 80px;
+    padding: 24px 29px 0 0;
+    background-image: url(/assets/img/bancos/CITIBANK/logo_Citi-header.png);
+    background-repeat: no-repeat;
+}
+
+.header__mid{
+    display: flex;
+    justify-content: space-between;
+    height: 25px;
+    padding: 0 29px 0 21px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #255BE3;
+}
+
+.header__info,
+.header__menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 9px;
+    background-color: #0F1632;
+}
+
+.header__menu{
+    gap: 10px;
+}
+
+.header__icon{
+    font-size: 8px;
+}
+
+.header__icon:last-child{
+    font-size: 6px;
+}
+
+.header__menu-txt{
+    padding-right: 18px;
+    font-size: 11px;
+    border-right: 1px solid #ffffff3f;
+}
+
+.header__bot{
+    width: 100%;
+    height: 41px;
+    padding-top: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    border-bottom: 1px solid #ccc;
+}
+
+/*|--- -- ---- -- ---|*/
+/*|--- -- MAIN -- ---|*/
+/*|--- -- ---- -- ---|*/
+
+.main{
+    position: relative;
+    width: 984px;
+    height: 500px;
+    font-size: 12px;
+    color: #fff;
+    background-image: url(/assets/img/bancos/CITIBANK/Home_banner_Conozca.jpg);
+    background-repeat: no-repeat;
+}
+
+.form{
+    padding: 25px;
+}
+
+.form__content{
+    width: 209px;
+    min-height: 225px;
+    padding: 10px 20px;
+    background-image: url(/assets/img/bancos/CITIBANK/back-loginBox.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.form__ttl{
+    font-size: 11px;
+    padding: 10px 0;
+}
+
+.form__lbl{
+    padding-top: 10px; 
+}
+
+.form__input{
+    width: 102%;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.form__forget{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding-top: 10px;
+    font-size: 12px;
+}
+
+.form__forget .bx{
+    font-size: 6px;
+}
+
+.form__login{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+}
+
+.form__btn{
+    margin: 12px 0 10px;    
+    height: 20px;
+    line-height: 13px;
+    padding: 3px 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #fff;
+    background: url(/assets/img/bancos/CITIBANK/back_btn_home.jpg) repeat-x scroll 0 0 transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.box{
+    position: absolute;
+    right: 0;
+    bottom: 50px;
+    display: flex;
+}
+
+.box__element{
+    position: relative;
+    width: 233px;
+    padding: 12px 0 12px 14px;
+    font-weight: 400;
+    background: url(/assets/img/bancos/CITIBANK/bg_darkblue.png);
+    border-top: 2px solid #fff;
+}
+
+.box__element--active{
+    border-top: none;
+    background: url(/assets/img/bancos/CITIBANK/bg_lightblue.png);
+}
+
+.box__element:nth-child(2){
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+
+.box__line{
+    position: absolute;
+    top: -8px;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 10px;
+    background: transparent url(/assets/img/bancos/CITIBANK/tab_arrow.png) scroll no-repeat left top;
+}
+
+.box__element--active .box__line{
+    display: block;
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- FOOTER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.footer{
+    position: relative;
+    padding: 0 0 60px 25px;
+}
+
+.footer__vigilado{
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+.footer__top{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 25px;
+    padding-bottom: 5px;
+    font-size: 11px;
+    color: #666;
+    border-bottom: 2px solid #CCCCCC;
+}
+
+.footer__top div{
+    display: flex;
+    gap: 10px;
+}
+
+.footer__bot{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #999;
+    margin-top: 10px;
+}
+
+.footer__bot div{
+    background: url(/assets/img/bancos/CITIBANK/logoFooter.png) no-repeat scroll 0 0 transparent;
+    height: 28px;
+    width: 38px;
+    padding-left: 20px;
+}

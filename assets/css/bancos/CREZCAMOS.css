@@ -1,0 +1,176 @@
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body{
+    background: url(/assets/img/bancos/CREZCAMOS/bg.png);
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- HEADER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1140px;
+    max-width: 90%;
+    padding: 0 12px;
+    background-color: #fff;
+}
+
+/*|--- -- ---- -- ---|*/
+/*|--- -- MAIN -- ---|*/
+/*|--- -- ---- -- ---|*/
+
+.box{
+    width: 440px;
+    max-width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border-radius: 1rem;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.box__ttl{
+    text-align: center;
+    padding: 0 12px;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #06c1a4;
+}
+
+.box__pse{
+    display: flex;
+    gap: 10px;
+    min-height: 35px;
+}
+
+.box__pse-icon{
+    flex: 1;
+    background: url(/assets/img/bancos/CREZCAMOS/logo_pse.svg) 0% 0% no-repeat padding-box;
+    background-size: 30px;
+    background-position: right center;
+}
+
+.box__pse-txt{
+    display: flex;
+    align-items: center;
+    width: 58.33333333%;
+    font-size: 18px;
+    font-weight: 600;
+    color: #5e5e5e;
+}
+
+.box__line{
+    width: 100%;
+    height: 10px;
+    margin-top: 5%;
+    background-image: repeating-linear-gradient(186deg, #d4d4d4, #d4d4d4 7px, transparent 7px, transparent 15px, #d4d4d4 15px), repeating-linear-gradient(276deg, #d4d4d4, #d4d4d4 7px, transparent 7px, transparent 15px, #d4d4d4 15px), repeating-linear-gradient(6deg, #d4d4d4, #d4d4d4 7px, transparent 7px, transparent 15px, #d4d4d4 15px), repeating-linear-gradient(96deg, #d4d4d4, #d4d4d4 7px, transparent 7px, transparent 15px, #d4d4d4 15px);
+    background-size: 0px 100%, 100% 1px, 0px 100%, 100% 0px;
+    background-position: 0 0, 0 0, 100% 0, 0 100%;
+    background-repeat: no-repeat;
+}
+
+.box__step{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+    font-weight: 600;
+}
+
+.box__num{
+    text-align: center;
+    width: 27px;
+    height: 27px;
+    font-size: 17px;
+    border-radius: 50%;
+    color: #fff;
+    background: #9490da;
+}
+
+.box__data{
+    font-size: 18px;
+    color: #9490da;
+}
+
+.box__element{
+    position: relative;
+}
+
+.box__lbl{
+    margin-top: 24px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #808080;
+}
+
+.box__input{
+    width: 100%;
+    height: 40px;
+    padding-left: 15%;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #808080;
+    border: 1px solid #d4d4d4;
+    outline: none;
+}
+
+.box__input-1{
+    background: url(/assets/img/bancos/CREZCAMOS/icon-user.svg) no-repeat;
+    background-position: 5% center;
+}
+
+.box__input-2{
+    background: url(/assets/img/bancos/CREZCAMOS/icon-num.svg) no-repeat;
+    background-position: 5% center;
+}
+
+.box__input-3{
+    background: url(/assets/img/bancos/CREZCAMOS/icon-lock.svg) no-repeat;
+    background-position: 5% center;
+}
+
+.box__continue{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 271px;
+    max-width: 100%;
+    margin: 34px auto 0;
+}
+
+.box__btn{
+    width: 100%;
+    height: 40px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    border: 1px solid #06c1a4;
+    background: url(/assets/img/bancos/CREZCAMOS/icon-arrow.svg), #46bc57;
+    background-position: 95% 52%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.box__btn--trasparent{
+    background: #fff;
+    color: #06c1a4;
+}
+
+@media screen and (max-width: 767px) {
+    .box{
+        width: 490px;
+        padding: 7%;
+    }
+}

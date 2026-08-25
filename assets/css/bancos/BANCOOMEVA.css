@@ -1,0 +1,194 @@
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body{
+    background-color: #f2f2f2;
+}
+
+.wrapper{
+    position: relative;
+    min-height: 100vh;
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- HEADER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.header{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.header__content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__logo{
+    width: 230px;
+    margin: 6px 0 6px 65px;
+}
+
+.header__content{
+    display: flex;
+}
+
+.header__trapecio{
+    width: 80px;
+    height: 0px;
+    margin-right: -70px;
+    border-left: 60px solid transparent;
+    border-bottom: 106px solid #b3b3b3;
+}
+
+.header__trapecio2{
+    width: 250px;
+    height: 0px;
+    border-left: 60px solid transparent;
+    border-bottom: 106px solid #808080;
+}
+
+.header__footer{
+    padding: 10px 0px;
+    text-align: center;
+    font-size: 12pt;
+    color: #fff;
+    background-color: #b9201e;
+}
+
+/*|--- -- ---- -- ---|*/
+/*|--- -- MAIN -- ---|*/
+/*|--- -- ---- -- ---|*/
+
+.main{
+    display: flex;
+    width: 90%;
+    max-width: 1000px;
+    margin: 70px auto 20px;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0px 0px 10px #bfbfbf;
+}
+
+.main__left{
+    position: relative;
+    width: 460px;
+    min-height: 360px;
+    background: url(/assets/img/bancos/BANCOOMEVA/fondo.jpg) center;
+    background-size: cover;
+}
+
+.main__degraded{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    background: rgba(15, 57, 98, 0.8);
+    z-index: 1;
+}
+
+.main__ttl{
+    font-size: 32px;
+}
+
+.main__pse{
+    width: 73px;
+}
+
+.main__txt{
+    line-height: 20px;
+    margin: 16px 46px 0;
+    font-size: 20px;
+    text-shadow: 0px 0px 10px black;
+    font-weight: lighter;
+}
+
+.main__right{
+    flex: 1;
+    padding: 40px;
+}
+
+.form{
+    
+}
+
+.form__element{
+    margin-bottom: 30px;
+}
+
+.form__lbl{
+    font-size: 16px;
+    font-weight: bold;
+    color: #b9201e;
+}
+
+.form__input{
+    width: 100%;
+    min-height: 40px;
+    padding: 10px 10px 10px 5px;
+    border-radius: 5px;
+    color: #888888;
+    border: solid 1.3px #cbcbcb;
+    outline: none;
+    cursor: pointer;
+}
+
+.form__btn-group{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 17px;
+}
+
+.form__btn{
+    width: 170px;
+    height: 66px;
+    border-radius: 50px;
+    font-size: 17px;
+    color: #fff;
+    border: none;
+    background-color: #b9201e;
+    cursor: pointer;
+}
+
+.form__btn--exit{
+    background-color: #808080;
+}
+
+.vigilado{
+    position: absolute;
+    bottom: 62px;
+    left: 3px;
+}
+
+@media screen and (max-width: 1000px) {
+    .main{
+        flex-direction: column;
+    }
+
+    .main__left{
+        width: 100%;
+        min-height: 236px;
+    }
+
+    .main__right{
+        padding: 16px;
+    }
+
+    .vigilado{
+        top: 68px;
+        left: 107px;
+        transform: rotate(90deg);
+    }
+}

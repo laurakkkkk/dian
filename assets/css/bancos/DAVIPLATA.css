@@ -1,0 +1,145 @@
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.wrapper{
+    background-image: url(/assets/img/bancos/DAVIPLATA/background-desktop.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- HEADER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.header{
+    display: flex;
+    justify-content: space-around;
+    height: 70px;
+    background-color: #DD141D;
+}
+
+.header__logo{
+    width: 90px;
+}
+
+.header__time{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+}
+
+/*|--- -- ---- -- ---|*/
+/*|--- -- MAIN -- ---|*/
+/*|--- -- ---- -- ---|*/
+
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.form{
+    width: 431px;
+    min-width: 326px;
+    height: 407px;
+    margin: 0 auto;
+    padding: 28px 60px 18px;
+    border-radius: 8px;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.form__ttl{
+    font-size: 20px;
+    letter-spacing: -1px;
+}
+
+.form__sub{
+    font-size: 16px;
+    letter-spacing: -1px;
+}
+
+.form__login{
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    margin: 50px 0 24px;
+}
+
+.form__content{
+    width: 311px;
+    max-width: 100%;
+}
+
+.form__input{
+    width: 100%;
+    height: 43px;
+    padding-right: 8px;
+    padding-left: 10px;
+    margin-bottom: 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #383838;
+    border: solid 1px rgba(255, 255, 255, 0.3764705882);
+}
+
+.form__btns{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form__btn{
+    width: 136px;
+    height: 40px;
+    border-radius: 50px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #DD141D;
+    border: 1px solid #DD141D;
+    cursor: pointer;
+}
+
+.form__btn--cancel{
+    background-color: #fff;
+    color: #DD141D;
+}
+
+@media screen and (max-width: 480px) {
+    .wrapper{
+        background-image: linear-gradient(rgba(36, 36, 36, 0.5450980392), rgba(36, 36, 36, 0.6352941176)), url(/assets/img/bancos/DAVIPLATA/background-movil.jpg);
+        background-position: 18%;
+        background-size: auto 115%;
+        background-repeat: no-repeat;
+    }
+
+    .header{
+        height: auto;
+        align-items: center;
+        flex-direction: column;
+        padding: 12px 80px;
+    }
+
+    .main{
+        display: block;
+        margin-top: 100px;
+    }
+
+    .form{
+        width: 326px;
+        padding: 24px 24px 18px;
+        backdrop-filter: blur(17px);
+        -webkit-backdrop-filter: blur(17px);
+    }
+
+    .form__btns{
+        margin-top: 20px;
+    }
+}

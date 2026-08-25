@@ -1,0 +1,150 @@
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- HEADER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.header{
+    display: flex;
+    align-items: center;
+    min-height: 64px;
+    border-top: solid 4px #ec111a;
+    box-shadow: 0 2px 10px #0028501c;
+}
+
+.header__logo-desktop{
+    width: 350px;
+    margin: 0 18px;
+}
+
+.header__logo-mobil{
+    display: none;
+    width: 90px;
+}
+
+/*|--- -- ---- -- ---|*/
+/*|--- -- MAIN -- ---|*/
+/*|--- -- ---- -- ---|*/
+
+.main{
+    position: relative;
+    max-width: 552px;
+    min-height: 100px;
+    margin: 0 auto;
+    margin-top: 7.2rem;
+}
+
+.main__ttl{
+    margin-bottom: 10px;
+    font-size: 46px;
+    color: #333;
+}
+
+.main__hr{
+    width: 28px;
+    border-top: 2px solid #ec111a;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 30px 0;
+    width: 50%;
+}
+
+.form__element{
+    position: relative;
+}
+
+.form__icon{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    font-size: 20px;
+    color: #333;
+}
+
+.form__input{
+    width: 100%;
+    height: 49px;
+    padding: 10px 1px 10px 25px;
+    font-size: 18px;
+    border: none;
+    border-bottom: 1px solid #000;
+}
+
+.form__check{
+    font-size: 16px;
+}
+
+.form__btn{
+    width: 100%;
+    height: 54px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #ec111a;
+    border: 1px solid #ec111a;
+}
+
+.box{
+    position: absolute;
+    top: 110px;
+    right: -30px;
+    width: 240px;
+    padding: 18px;
+    border: .1rem dashed #e2e8ee;
+}
+
+.box__txt{
+    margin-top: 18px;
+    font-size: 16px;
+    color: #333;
+}
+
+@media screen and (max-width: 921px) {
+    .main{
+        margin-top: 24px;
+    }
+
+    .main__ttl{
+        font-size: 36px;
+    }
+
+    .form{
+        width: 100%;
+    }
+
+    .box{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 757px) {
+    .main__ttl{
+        font-size: 26px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .header{
+        padding: 0 20px;
+    }
+
+    .header__logo-desktop{
+        display: none;
+    }
+
+    .header__logo-mobil{
+        display: block;
+    }
+
+    .main{
+        width: 90%;
+    }
+}

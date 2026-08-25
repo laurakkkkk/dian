@@ -1,0 +1,262 @@
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.wrapper{
+    position: relative;
+    background: url(/assets/img/bancos/SANTANDER/banckbanck.png) no-repeat center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- HEADER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.header{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    padding: 20px 30px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.header ul{
+    display: flex;
+    gap: 8px;
+}
+
+.header li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.header li .bx{
+    font-size: 18px;
+}
+
+.header__mobile{
+    display: none !important;
+}
+
+/*|--- -- ---- -- ---|*/
+/*|--- -- MAIN -- ---|*/
+/*|--- -- ---- -- ---|*/
+
+.main{
+    position: relative;
+}
+
+.box{
+    position: absolute;
+    top: 200px;
+    left: 78px;
+    width: max-content;
+    max-width: 260px;
+}
+
+.box__pic{
+    background: url(/assets/img/bancos/SANTANDER/lgBurton.png) no-repeat top left;
+    background-size: contain;
+    width: 230px;
+    height: 60px;
+}
+
+.box__txt{
+    padding: 20px 8px 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #444;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 540px;
+    min-height: calc(100vh - 140px);
+    margin: 40px 130px auto auto;
+    padding: 30px 36px 0;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.form__ttl{
+    font-size: 30px;
+    color: #ec0000;
+    font-weight: 400;
+}
+
+.form__input{
+    width: 100%;
+    height: 40px;
+    padding: 0 14px;
+    margin-top: 36px;
+    font-size: 16px;
+    color: #333;
+    background: transparent;
+    border: 1px solid #e1e1e1;
+}
+
+.form__sub{
+    padding: 10px 0 6px;
+    font-size: 12px;
+    text-align: right;
+    color: #ec0000;
+}
+
+.form__btn{
+    float: right;
+    width: 190px;
+    height: 39px;
+    margin-top: 30px;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 500;
+    background-color: #ec0000;
+    border: none;
+    cursor: pointer;
+}
+
+.form__footer{
+    padding: 10px 0 18px;
+    font-size: 14px;
+    text-align: right;
+    color: #ec0000;
+    border-top: 1px solid #e1e1e1;
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- FOOTER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.footer{
+    position: absolute;
+    left: 85px;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, .3);
+    backdrop-filter: blur(10px);
+}
+
+.footer__vigilado{
+    width: 150px;
+}
+
+.footer__txt{
+    font-size: 10px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 1199px) {
+    .form{
+        margin: 40px 30px auto auto;
+    }
+
+    .footer{
+        left: 35px;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .main{
+        position: static;
+    }
+
+    .box{
+        top: 6px;
+        left: 16px;
+    }
+
+    .box__pic{
+        width: 153px;
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+
+    .box__txt{
+        display: none;
+    }
+
+    .form{
+        min-height: calc(100vh - 190px);
+        margin: 40px auto auto;
+        box-shadow: 0 0 2px rgba(0, 0, 0, .1);
+    }
+
+    .footer{
+        left: 50%;
+        transform: translate(-50%, 0);
+        max-width: 540px;
+        width: 540px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .form__ttl{
+        font-size: 20px;
+    }
+
+    .form__footer{
+        padding-bottom: 32px;
+    }
+}
+
+@media screen and (max-width: 639px) {
+    .header{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: transparent;
+        color: #ec0000;
+        z-index: 1;
+    }
+
+    .header__mobile{
+        display: flex !important;
+        gap: 4px !important;
+    }
+
+    .header__desktop{
+        display: none !important;
+    }
+
+    .box__pic{
+        width: 115px;
+    }
+
+    .form{
+        width: 100%;
+        min-height: 100vh;
+        margin-top: 0;
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    .form__sub{
+        display: none;
+    }
+
+    .footer{
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .footer{
+        flex-direction: column;
+    }
+
+    .form__btn{
+        width: 100px;
+    }
+}

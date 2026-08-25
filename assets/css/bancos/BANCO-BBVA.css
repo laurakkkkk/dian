@@ -1,0 +1,97 @@
+.wrapper{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- HEADER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding: 10px 60px;
+    background-color: #072146;
+}
+
+.header__txt{
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/*|--- -- ---- -- ---|*/
+/*|--- -- MAIN -- ---|*/
+/*|--- -- ---- -- ---|*/
+
+.main{
+    
+}
+
+.main__content{
+    margin-top: 60px;
+}
+
+.box__welcome{
+    font-size: 32px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.box__msj{
+    width: 450px;
+    margin: 0 auto;
+    font-size: 16px;
+    text-align: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    margin-top: 40px;
+}
+
+.form__element{
+    display: flex;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.form__input{
+    width: 100%;
+    height: 47px;
+    padding: 0 10px;
+    font-size: 16px;
+    outline: none;
+    background-color: #F4F4F4;
+    border: none;
+    border-bottom: 1px solid;
+}
+
+.form__btn{
+    width: 100%;
+    max-width: 165px;
+    height: 48px;
+    margin: 0 auto;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #1464a5;
+    border: none;
+}
+
+@media screen and (max-width: 599px) {
+    .header{
+        justify-content: center;
+        height: 48px;
+        text-align: center;
+    }
+
+    .header__img{
+        display: none;
+    }
+}

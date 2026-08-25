@@ -1,0 +1,112 @@
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.wrapper{
+    padding: 0 0 30px;
+    box-shadow: 1px 2px 3px #00000083;
+    background-color: #F7FAFC;
+    border-bottom: 3px solid #00A9CE;
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- HEADER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.header{
+    display: flex;
+    align-items: center;
+    height: 100px;
+    background: #FAE100;
+    overflow: hidden;
+}
+
+.header img{
+    padding-left: 32px;
+}
+
+/*|--- -- ---- -- ---|*/
+/*|--- -- MAIN -- ---|*/
+/*|--- -- ---- -- ---|*/
+
+.main{
+    padding: 15px;
+    text-align: center;
+}
+
+.main__ttl{
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #15A4E0;
+}
+
+.main__sub{
+    display: block;
+    margin-bottom: 30px;
+    font-size: 12px;
+    color: #333F48;
+}
+
+.form{
+    width: 530px;
+    max-width: 95%;
+    margin: 0px auto 40px;
+    padding: 3rem 5rem 1rem 5rem;
+    border-radius: 1.25rem;
+    text-align: left;
+    box-shadow: 0px 0px 20px 0px rgba(20, 99, 129, 0.25);
+    border: 1px solid #ccc;
+}
+
+.form__element{
+    margin-bottom: 15px;
+}
+
+.form__lbl{
+    font-size: 12px;
+    color: #333F48;
+}
+
+.form__input{
+    width: 100%;
+    height: 2rem;
+    margin-top: 8px;
+    padding: 2px 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+}
+
+.form__option{
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.form__btn{
+    width: 121px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #15A4E0;
+    border: 1px solid #15A4E0;
+    cursor: pointer;
+}
+
+.form__btn--transparent{
+    color: #15A4E0;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 900px) {
+    .main{
+        padding: 0;
+    }
+
+    .form{
+        width: 90%;
+        padding: 16px 16px 0;
+    }
+}

@@ -1,0 +1,556 @@
+/*|--- -- ------ -- ---|*/
+/*|--- -- LOADER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.loader{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    background-color: #00000049;
+}
+
+.spinner {
+    font-size: 28px;
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+}
+
+.spinner.center {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.spinner .spinner-blade {
+    position: absolute;
+    left: 0.4629em;
+    bottom: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: transparent;
+    -webkit-transform-origin: center 90px;
+    -ms-transform-origin: center 90px;
+    transform-origin: center 90px;
+    animation: spinner-fade9234 1s infinite linear;
+}
+
+.spinner .spinner-blade:nth-child(1) {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+
+.spinner .spinner-blade:nth-child(2) {
+    -webkit-animation-delay: 0.083s;
+    animation-delay: 0.083s;
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+
+.spinner .spinner-blade:nth-child(3) {
+    -webkit-animation-delay: 0.166s;
+    animation-delay: 0.166s;
+    -webkit-transform: rotate(60deg);
+    -ms-transform: rotate(60deg);
+    transform: rotate(60deg);
+}
+
+.spinner .spinner-blade:nth-child(4) {
+    -webkit-animation-delay: 0.249s;
+    animation-delay: 0.249s;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.spinner .spinner-blade:nth-child(5) {
+    -webkit-animation-delay: 0.332s;
+    animation-delay: 0.332s;
+    -webkit-transform: rotate(120deg);
+    -ms-transform: rotate(120deg);
+    transform: rotate(120deg);
+}
+
+.spinner .spinner-blade:nth-child(6) {
+    -webkit-animation-delay: 0.415s;
+    animation-delay: 0.415s;
+    -webkit-transform: rotate(150deg);
+    -ms-transform: rotate(150deg);
+    transform: rotate(150deg);
+}
+
+.spinner .spinner-blade:nth-child(7) {
+    -webkit-animation-delay: 0.498s;
+    animation-delay: 0.498s;
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.spinner .spinner-blade:nth-child(8) {
+    -webkit-animation-delay: 0.581s;
+    animation-delay: 0.581s;
+    -webkit-transform: rotate(210deg);
+    -ms-transform: rotate(210deg);
+    transform: rotate(210deg);
+}
+
+.spinner .spinner-blade:nth-child(9) {
+    -webkit-animation-delay: 0.664s;
+    animation-delay: 0.664s;
+    -webkit-transform: rotate(240deg);
+    -ms-transform: rotate(240deg);
+    transform: rotate(240deg);
+}
+
+.spinner .spinner-blade:nth-child(10) {
+    -webkit-animation-delay: 0.747s;
+    animation-delay: 0.747s;
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.spinner .spinner-blade:nth-child(11) {
+    -webkit-animation-delay: 0.83s;
+    animation-delay: 0.83s;
+    -webkit-transform: rotate(300deg);
+    -ms-transform: rotate(300deg);
+    transform: rotate(300deg);
+}
+
+.spinner .spinner-blade:nth-child(12) {
+    -webkit-animation-delay: 0.913s;
+    animation-delay: 0.913s;
+    -webkit-transform: rotate(330deg);
+    -ms-transform: rotate(330deg);
+    transform: rotate(330deg);
+}
+
+@keyframes spinner-fade9234 {
+    0% {
+        background-color: #3f3f3f;
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
+
+/*|--- -- ---- -- ---|*/
+/*|--- -- MAIN -- ---|*/
+/*|--- -- ---- -- ---|*/
+
+.box{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 50px auto 0;
+    max-width: 787px;
+}
+
+.box__content{
+    position: relative;
+    width: 100%;
+}
+
+.box__content--hidde{
+    display: none;
+}
+
+.box__top{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.box__step{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    margin-right: 20px;
+    font-size: 20px;
+    border-radius: 50%;
+    color: #FF0F64;
+    border: 1px solid #FF0F64;
+    background-color: #fff;
+}
+
+.box__step--hidde{
+    display: none;
+}
+
+.box__icon-check{
+    font-size: 40px;
+    padding-right: 20px;
+    color: #FF0F64;
+}
+
+.box__icon-check--hidde{
+    display: none;
+}
+
+.box__txt{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.box__ttl{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.box__sub{
+    font-size: 16px;
+}
+
+.box__sub--color{
+    font-weight: 500;
+    color: #FF0F64;
+}
+
+.box__bot{
+    margin-left: 50px;
+    padding: 20px 0 25px;
+}
+
+.box__bot--line{
+    border-top: 2px solid #e5e5e5;
+}
+
+.box__data{
+    display: flex;
+    flex-direction: column;
+}
+
+.box__num-ttl{
+    font-weight: 700;
+    font-size: 14px;
+    padding-bottom: 8px;
+}
+
+.box__num{
+    font-size: 14px;
+}
+
+.box__line{
+    position: absolute;
+    left: 14px;
+    top: 67px;
+    height: 86px;
+    border-left: 1px solid #FF0F64;
+}
+
+.box__line--two{
+    height: 160px;
+}
+
+/*--- -- TABLE -- ---*/
+
+table.table {
+    border: 1px solid #DDDDDD;
+    background-color: #F1F1F1;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+table.table td,
+table.table th {
+    border: 1px solid #DDDDDD;
+    padding: 15px 20px;
+    font-size: 15px;
+}
+
+table.table thead {
+    background: #FFFFFF;
+}
+
+/*--- -- CHECKBOX -- ---*/
+
+.checkbox-wrapper-33 {
+    --border-width: 3px;
+    --c-primary: #FF0F64;
+}
+
+.checkbox-wrapper-33 .visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.checkbox-wrapper-33 .checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox-wrapper-33 .checkbox__symbol {
+    display: inline-block;
+    display: flex;
+    border: var(--border-width) solid var(--c-primary);
+    position: relative;
+    width: 22px;
+    height: 22px;
+}
+
+.checkbox-wrapper-33 .checkbox .icon-checkbox {
+    width: 1em;
+    height: 1em;
+    margin: auto;
+    fill: none;
+    stroke-width: 5;
+    stroke: currentColor;
+    color: #000;
+    display: inline-block;
+}
+
+.checkbox-wrapper-33 .checkbox .icon-checkbox path {
+    stroke-dasharray: 30px, 31px;
+    stroke-dashoffset: 31px;
+}
+
+.checkbox-wrapper-33 .checkbox__trigger:checked+.checkbox__symbol .icon-checkbox path {
+    stroke-dashoffset: 0px;
+}
+
+/*--- -- BOX PRICE -- ---*/
+
+.box__price{
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 65px;
+}
+
+.box__price--hidde{
+    display: none;
+}
+
+/*--- -- BOX BUTTON -- ---*/
+
+.box__btn{
+    display: flex;
+    justify-content: end;
+    margin-left: 50px;
+    padding-top: 20px;
+}
+
+.box__btn--hidde{
+    display: none !important;
+}
+
+.box__pay{
+    width: 100%;
+    max-width: 160px;
+    height: 49px;
+    border: none;
+    background-color: #FF0F64;
+    color: #fff;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.box__pay--disabled{
+    background-color: #9B9B9B;
+    cursor: auto;
+}
+
+/*|--- -- ---------- -- ---|*/
+/*|--- -- METHOD PAY -- ---|*/
+/*|--- -- ---------- -- ---|*/
+
+.box__picture{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 245px;
+    border: 1px solid #CCC; 
+}
+
+.box__picture--selected{
+    border: 2px solid #FF0F64;
+}
+
+.box__pse{
+    width: 223px;
+}
+
+.box__line--three{
+    height: 170px;
+}
+
+.box__btn-authorize{
+    display: flex;
+    justify-content: space-between;
+}
+
+.box__authorize{
+    display: flex;
+    gap: 15px;
+}
+
+.checkbox-wrapper-33--other{
+    margin-top: 10px;
+}
+
+.checkbox-wrapper-33--other .checkbox__symbol {
+    border: var(--border-width) solid rgba(0, 0, 0, 0.15);
+    background-color: #eee;
+}
+
+.box__authorize-text{
+    width: 333px;
+    font-size: 16px;
+}
+
+.box__authorize-link{
+    color: #FF0F64;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.box__form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.box__form--hidde{
+    display: none;
+}
+
+.box__form-content{
+    display: flex;
+    flex-direction: column;
+}
+
+.box__form-content:first-child{
+    padding: 0 40px;
+}
+
+.box__form-lbl{
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.box__form-input{
+    width: 386px;
+    max-width: 100%;
+    height: 59px;
+    font-size: 18px;
+    padding: 15px;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    outline-color: #000;
+}
+
+.box__form-input--select{
+    width: 326px;
+    padding: 12px 40px 12px 18px;
+}
+
+/*|--- -- ---------- -- ---|*/
+/*|--- -- RESPONSIVE -- ---|*/
+/*|--- -- ---------- -- ---|*/
+
+@media screen and (max-width: 1023px) {
+    .box{
+        max-width: 100%;
+    }
+
+    .box__step{
+        min-width: 24px;
+        height: 24px;
+        font-size: 16px;
+    }
+
+    .box__icon-check{
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .main{
+        padding: 0 15px;
+    }
+
+    table.table {
+        border: none;
+    }
+
+    table.table td,
+    table.table th {
+        border-top: none;
+    }
+
+    table.table thead {
+        display: none;
+    }
+
+    table.table td,
+    table.table th {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 15px 20px;
+    }
+    
+    table.table td{
+        text-align: left;
+    }
+    table.table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+    }
+
+    table.table tbody .odd {
+        background-color: #fff;
+    }
+    
+    table.table tbody .even {
+        background-color: #f7f7f7;
+    }
+
+    .box__line--two{
+        height: 21.4rem;
+    }
+
+    .box__price--hidde{
+        display: none;
+    }
+
+    .box__btn{
+        margin-top: 50px;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .box__line--two{
+        top: 88px;
+        height: 21.4rem;
+    }
+}

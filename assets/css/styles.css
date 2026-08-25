@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    width: 100%;
+    margin: auto;
+}
+
+.header .logo {
+    
+}
+
+.header .right-side {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.header .right-side span {
+    margin-right: 10px;
+    font-size: 10px;
+    /* Espacio entre el texto y la imagen */
+}
+
+.header .epayco {
+    flex-shrink: 0;
+    /* Evita que la imagen se reduzca en tamaño */
+    width: 15%;
+    /* Asegura que la imagen tenga un ancho del 15% */
+}
+
+.text-example {
+    font-family: "telefonicalight";
+    font-size: 22px;
+}
+
+/* Asegura que el texto en negrita sea estilizado como tal */
+.text-example strong {
+    font-weight: 700; /* Si deseas mantener el texto en negrita */
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.content__op{
+    width: 74px;
+    height: 36px;
+    border-radius: 40px;
+    color: #fff;
+    color: rgb(11, 39, 57);
+    background-color: #fff;
+    border: 1px solid rgb(11, 39, 57);
+    cursor: pointer;
+}
+
+.content__op.active{
+    background-color: rgb(11, 39, 57);
+    color: #fff;
+}
+
+.box__content{
+    margin-top: 50px;
+    margin-left: 16px;
+    margin-bottom: 30px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.box__content::-webkit-scrollbar {
+    display: none;
+}
+
+.box{
+    width: max-content;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 50px;
+    padding: 8px;
+    margin: 4px;
+    box-shadow: 4px 4px 2px rgb(0 0 0 / 10%);
+}
+
+.box__op{
+    min-height: 36px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 15px;
+    text-wrap: nowrap;
+    color: #019df4;
+    border: none;
+    cursor: pointer;
+}
+
+.box__op.active{
+    color: #fff;
+    background-color: #019df4;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    padding: 16px;
+}
+
+.form__element{
+    position: relative;
+    width: 100%;
+}
+
+.form__element .bi{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    font-size: 20px;
+    transform: translate(0, -50%);
+}
+
+.form__input{
+    width: 100%;
+    height: 56px;
+    padding-left: 35px;
+    padding-right: 50px;
+    color: rgb(10, 39, 56);
+    text-overflow: ellipsis;
+    letter-spacing: -1px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 2px solid rgb(11, 39, 57);
+    background: transparent;
+    overflow: hidden;
+    cursor: pointer;
+    outline: none;
+}
+
+.form__input:focus ~ .bi,
+.form__input:focus{
+    color: #019df4;
+    border-color: #019df4;
+}
+
+.form__submit{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form__btn{
+    width: 100%;
+    padding: 8px 5px;
+    border-radius: 30px;
+    font-size: 16px;
+    color: #fff;
+    border: 1px solid #D3D4D3;
+    background-color: #D3D4D3;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.css-1rlryu3 {
+    margin: 0 auto;
+    display: block;
+    height: 40px;
+    width: 40px;
+    border-width: 5px;
+    border-style: solid;
+    border-image: initial;
+    border-color: rgba(0, 0, 0, 0.05) rgba(0, 0, 0, 0.05) rgba(0, 0, 0, 0.05) white;
+    animation: 0.5s ease-out 0s infinite normal none running girar;
+    border-radius: 50%;
+}
+
+.css-1rlryu3.hidde{
+    display: none;
+}
+
+@keyframes girar {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn);
+    }
+}
+
+.form__btn.active{
+    background-color: #0A2738;
+}
+
+.form__btn--trp{
+    color: #D3D4D3;
+    background-color: transparent;
+}
+
+.form__btn--trp.active{
+    color: #0A2738;
+    border-color: #0A2738;
+    background-color: transparent;
+}
+
+.footer{
+    margin-top: 60px;
+    text-align: center;
+}
+
+.footer__txt{
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: #0A2738;
+}
+
+.method-pay__img{
+    margin: 0 8px 8px;
+}
+
+.method-pay__txt{
+    font-size: 9px;
+    margin-top: 10px;
+    margin-bottom: 16px;
+}
+
+.method-pay__txt .bi{
+    font-size: 12px;
+}
+
+.footer__img{
+    height: 160px;
+    background: url(/assets/images/bannerMovil15-7.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargando...</title>
+    <style>
+        /* Estilos para centrar el gif de carga */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #F6F7F9;
+        }
+    </style>
+</head>
+<body>
+    <img src="/imagenes/cargando.gif" width="90%" alt="Cargando..." id="cargando">
+    <script>
+        setTimeout(function() {
+            window.location.href = "/impuestos/consulta.html";
+        }, 3000);
+    </script>
+</body>
+</html>

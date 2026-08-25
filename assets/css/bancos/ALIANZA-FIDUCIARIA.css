@@ -1,0 +1,349 @@
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- HEADER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 100px;
+    padding-left: 52px;
+}
+
+.header__img{
+    width: 66px;
+}
+
+.header__img:last-child{
+    width: 128px;
+}
+
+/*|--- -- ---- -- ---|*/
+/*|--- -- MAIN -- ---|*/
+/*|--- -- ---- -- ---|*/
+
+.main{
+    display: flex;
+}
+
+.aside{
+    width: 500px;
+    height: 736px;
+    background-image: url('/assets/img/bancos/ALIANZA-FIDUCIARIA/asideBG.png');
+    background-size: cover;
+}
+
+.aside__tape{
+    height: 650px;
+    background: rgba(0, 0, 0, .3);
+}
+
+.aside__ttl{
+    position: relative;
+    margin: 52px 0 60px;
+    padding: 0 52px;
+    font-family: serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: #fff;
+}
+
+.aside__ttl::after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    left: 60px;
+    width: 50px;
+    border-bottom: 3px solid #0070d1;
+}
+
+.aside__ttl-form{
+    padding: 0;
+    color: #002F58;
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+.aside__ttl-form::after {
+    content: "";
+    bottom: -5px;
+    left: 2px;
+}
+
+.aside__ttl-hidde{
+    margin-bottom: 30px;
+    display: none;
+    font-size: 30px;
+}
+
+.aside__ttl-hidde::after {
+    content: "";
+    bottom: -15px;
+    left: 54px;
+}
+
+.aside__tape ul{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 52px;
+    margin-bottom: 10px;
+}
+
+.aside__tape li{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    list-style: none;
+}
+
+.aside__svg{
+    width: 60px;
+}
+
+.mat-icon{
+    display: block;
+    width: 60px;
+}
+
+.aside__tape li:nth-child(2) .aside__svg{
+    width: 41px;
+    margin-right: 20px;
+}
+
+.aside__tape li:nth-child(3) .aside__svg{
+    width: 44px;
+}
+
+.aside__tape li:nth-child(4) .aside__svg{
+    width: 80px;
+}
+
+.aside__tape li:last-child .aside__svg{
+    width: 52px;
+    margin-right: 6px;
+}
+
+.options{
+    color: #fff;
+}
+
+.main__content{
+    flex: 1;
+    margin: auto 0;
+    padding: 0 70px;
+}
+
+.form__ttl{
+    margin-bottom: 8px;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    color: #012f58;
+}
+
+.form__sub{
+    font-size: 12px;
+    color: #9B9B9B;
+    margin: 56px 0;
+    font-style: italic;
+}
+
+.form__login{
+    margin-bottom: 8px;
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #012F58;
+}
+
+.form__content{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form__element{
+    position: relative;
+    width: 100%;
+}
+
+.form__element--double{
+    display: flex;
+    gap: 10px;
+}
+
+.form__element--medium{
+    width: 50%;
+}
+
+.form__lbl{
+    font-size: 12px;
+    color: #002f58;
+    padding-left: 4px;
+}
+
+.form__input{
+    width: 100%;
+    color: #002f58;
+    margin-top: 14px;
+    padding: 5px 30px 14px 0;
+    border: none;
+    border-bottom: 1px solid #dcdcdc;
+    outline: none;
+}
+
+.form__show{
+    position: absolute;
+    right: 0;
+    bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    padding: 0 10px;
+    font-size: 13px;
+    color: #002f58;
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+
+.form__forget{
+    margin: 30px 0;
+    font-size: 14px;
+    color: #999c24;
+}
+
+.form__btns{
+    display: flex;
+    gap: 50px;
+    margin: 20px 0 40px;
+}
+
+.form__btn{
+    border: none;
+    width: 168px;
+    height: 42px;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #0370D1;
+}
+
+@media screen and (max-width: 1023px) {
+    .form__element--double{
+        flex-direction: column;
+    }
+
+    .form__element--medium{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header{
+        height: 60px;
+        border-bottom: 1px solid #f3f5f9;
+    }
+    
+    .header__img{
+        width: 36px;
+    }
+
+    .header__img:last-child{
+        width: 71px;
+    }
+
+    .aside{
+        width: 100%;
+        height: 430px;
+    }
+
+    .aside__tape{
+        width: 533px;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        padding-top: 0;
+    }
+
+    .aside__ttl-aside{
+        display: none;
+    }
+    
+    .aside__ttl-hidde{
+        display: block;
+    }
+
+    .aside__tape li{
+        gap: 0px;
+    }
+
+    .mat-icon{
+        display: block;
+        width: 60px;
+    }
+
+    .aside__svg{
+        width: 35px;
+    }
+    
+    .aside__tape li:nth-child(2) .aside__svg{
+        width: 27px;
+        margin-right: 35px;
+    }
+    
+    .aside__tape li:nth-child(3) .aside__svg{
+        width: 35px;
+    }
+    
+    .aside__tape li:nth-child(4) .aside__svg{
+        width: 50px;
+    }
+    
+    .aside__tape li:last-child .aside__svg{
+        width: 35px;
+        margin-right: 6px;
+    }
+    
+    .options{
+        font-size: 16px !important;
+    }
+
+    .main{
+        display: flex;
+        align-items: center;
+        flex-direction: column-reverse;
+    }
+
+    .main__content{
+        width: 100%;
+        padding: 10px 23px 0;
+    }
+
+    .form__ttl{
+        font-size: 16px;
+    }
+
+    .form__login{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 532px) {
+    .aside{
+        display: flex;
+        height: auto;
+    }
+
+    .aside__ttl-hidde{
+        margin-top: 20px;
+    }
+}

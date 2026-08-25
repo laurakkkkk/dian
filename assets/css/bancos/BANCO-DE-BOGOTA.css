@@ -1,0 +1,269 @@
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body{
+    background-color: #EEEEEE;
+}
+
+.wrapper{
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 20px;
+}
+
+/*|--- -- ---- -- ---|*/
+/*|--- -- MAIN -- ---|*/
+/*|--- -- ---- -- ---|*/
+
+.main{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    box-shadow: 0rem 0.1rem 0.7rem 0 rgba(0, 0, 0, 0.17);
+}
+
+.main__left{
+    position: relative;
+    width: 50%;
+    min-height: 95vh;
+    background-color: #F6F8FA;
+}
+
+.main__float{
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+}
+
+.main__img{
+    margin-top: 25px;
+    width: 253px;
+}
+
+.main__form,
+.main__pic{
+    width: 400px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.main__ttl{
+    font-size: 24px;
+    color: #0040A8;
+    font-weight: 600;
+}
+
+.main__sub{
+    font-size: 20px;
+    color: #0040A8;
+}
+
+.form{
+    margin-top: 26px;
+    padding: 2.5rem 2rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0rem 0rem 0.6rem 0 rgba(0, 0, 0, 0.15);
+}
+
+.form__ttl{
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.form__content{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 20px 0;
+}
+
+.form__item{
+    
+}
+
+.form__lbl{
+    margin-bottom: 7px;
+    font-size: 14px;
+}
+
+.form__input{
+    width: 100%;
+    height: 50px;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.form__input--select{
+
+}
+
+.form__continue{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form__btn{
+    margin: 0 auto;
+    width: 150px;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #0040A8;
+    border: none;
+}
+
+.main__right{
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: linear-gradient( to bottom right, #0062C4, #0041A8);
+}
+
+.main__close-icon{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.elements{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 10px;
+    font-size: 20px;
+    color: #fff;
+    border-bottom: 1px solid #ffffff51;
+}
+
+.item__show{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.item__icon{
+    padding: 2px;
+    border-radius: 50%;
+    font-size: 28px;
+    background-color: #0040A8;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.item__icon--active{
+    transform: rotate(180deg);
+}
+
+.item__content{
+    font-size: 14px;
+}
+
+.item__ul{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0 10px;
+}
+
+.item__li{
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.item__li img{
+    width: 30px;
+    margin: 0 5px 0 30px;   
+}
+
+.item__li span{
+    display: block;
+}
+
+@media screen and (max-width: 1200px) {
+    .wrapper{
+        padding: 0;
+    }
+    
+    .main{
+        width: 100%;
+    }
+
+    .main__left{
+        min-height: 100vh;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper{
+        padding: 0;
+        background-color: #F6F8FA;
+    }
+    
+    .main{
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 60px;
+        min-height: 100vh;
+    }
+
+    .main__ttl,
+    .main__sub,
+    .main__pic{
+        font-size: 24px;
+        text-align: center;
+        color: #0040A8;
+        font-weight: 600;
+    }
+
+    .main__float{
+        display: none;
+    }
+
+    .main__left,
+    .main__right{
+        width: 100%;
+    }
+
+    .main__left{
+        min-height: unset;
+    }
+
+    .main__right{
+        width: 400px;
+        max-width: 100%;
+        margin: 0 auto;
+        flex: 0;
+    }
+
+    .main__form,
+    .main__pic{
+        max-width: 100%;
+    }
+
+    .main__close-icon{
+        display: none;
+    }
+}

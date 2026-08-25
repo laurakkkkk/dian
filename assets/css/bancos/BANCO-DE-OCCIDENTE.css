@@ -1,0 +1,245 @@
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/*|--- -- ------ -- ---|*/
+/*|--- -- HEADER -- ---|*/
+/*|--- -- ------ -- ---|*/
+
+.header{
+
+}
+
+/*|--- -- ---- -- ---|*/
+/*|--- -- MAIN -- ---|*/
+/*|--- -- ---- -- ---|*/
+
+.main{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(/assets/img/bancos/BANCO-DE-OCCIDENTE/bg.jpg);
+    background-size: cover;
+}
+
+.main__content{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(to top, #ffffffab, transparent);
+    background: linear-gradient(0deg, #ffffff 0%, #ffffff 10%, transparent 50%);
+}
+
+.main__float-img{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    width: 154px;
+}
+
+.main__left{
+    flex: 1;
+    margin: 0 28px 0 14px;
+    display: flex;
+    align-items: end;
+}
+
+.main__content-l{
+    position: relative;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
+    gap: 30px;
+}
+
+.main__vigilado{
+    float: left;
+}
+
+.main__mid-l{
+    position: absolute;
+    bottom: 30px;
+    left: 70px;
+    max-width: 490px;
+}
+
+.main__mid-top{
+    max-width: 294px;
+    margin-bottom: 8px;
+    margin-left: 26px;
+    font-size: 30px;
+    font-weight: 500;
+    color: #022047;
+}
+
+.main__mid-title{
+    font-size: 54px;
+    color: #022047;
+    margin-left: 26px;
+}
+
+.main__mid-content{
+    display: flex;
+    gap: 10px;
+}
+
+.main__mid-content .bx{
+    margin-top: 2px;
+    color: #0056cb;
+}
+
+.main__mid-txt{
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #0081ff;
+}
+
+.main__footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555f83;
+}
+
+.main__right{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 100vh;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 35rem;
+    max-width: 38.357rem;
+    height: 98%;
+    max-height: 68.214rem;
+    padding-bottom: 40px;
+    border-radius: .714rem;
+    background-color: #fff;
+    box-shadow: 0 0 .429rem #3333;
+    z-index: 1;
+}
+
+.form__pic{
+    width: 100%;
+    height: 6%;
+    background-image: url(/assets/img/bancos/BANCO-DE-OCCIDENTE/logo.svg);
+    background-size: auto 2.857rem;
+    background-position: top;
+    background-repeat: no-repeat;
+    min-height: 4rem;
+}
+
+.form__txt{
+    margin-bottom: 32px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.form__content{
+    width: 100%;
+    max-width: 371px;
+    margin: 0 auto;
+}
+
+.form__item{
+    margin-bottom: 20px;
+}
+
+.form__lbl{
+    padding-top: 2px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #555f83;
+}
+
+.form__input{
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid #adbae6;
+    outline: none;
+}
+
+.form__ops{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+.form__btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 110px;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    background-image: linear-gradient(to bottom, #0081ff, #0056cb 72%);
+    border: none;
+    color: #fff;
+}
+
+.form__btn--back{
+    width: 164px;
+    color: #000;
+    background-image: linear-gradient(to bottom, #fff, #fff 72%);
+    border: 1px solid #adbae6;
+}
+
+.form__icon-arrow{
+    font-size: 20px;
+    color: #0081ff;
+}
+
+.form__icon-pad{
+    font-size: 20px;
+    color: #fff;
+}
+
+@media screen and (max-width: 991px) {
+    .main__content{
+        justify-content: center;
+    }
+
+    .main__left{
+        display: none;
+    }
+
+    .form{
+        height: 70%;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .main__right{
+        width: 100%;
+    }
+
+    .form{
+        width: 100%;
+        height: 100%;
+        border-radius: 0%;
+    }
+}
