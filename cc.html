@@ -249,6 +249,9 @@
       display: block;
     }
 
+    /* ============================================ */
+    /* LOADING OVERLAY - CENTRADO Y OPTIMIZADO      */
+    /* ============================================ */
     .loading-overlay {
       display: none;
       position: fixed;
@@ -256,10 +259,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
-      z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 9999;
       justify-content: center;
       align-items: center;
       flex-direction: column;
@@ -272,21 +275,20 @@
 
     .loading-card {
       background: #ffffff;
-      border-radius: 16px;
+      border-radius: 20px;
       padding: 40px 32px 32px 32px;
-      max-width: 360px;
+      max-width: 340px;
       width: 100%;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
       text-align: center;
       animation: slideUp 0.4s ease-out;
-      margin: auto;
-      border: 1px solid #f0f0f0;
+      border: 1px solid rgba(0, 0, 0, 0.04);
     }
 
     @keyframes slideUp {
       from {
         opacity: 0;
-        transform: translateY(20px) scale(0.96);
+        transform: translateY(30px) scale(0.95);
       }
       to {
         opacity: 1;
@@ -298,21 +300,21 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 24px;
-      min-height: 100px;
+      margin-bottom: 20px;
+      min-height: 80px;
     }
 
     .logo-container .logo-img {
-      height: 80px;
+      height: 70px;
       width: auto;
-      max-width: 150px;
+      max-width: 140px;
       object-fit: contain;
     }
 
     .loading-card .loading-text {
       font-size: 0.95rem;
-      font-weight: 500;
-      color: #374151;
+      font-weight: 600;
+      color: #1d276c;
       margin-bottom: 20px;
       letter-spacing: 0.2px;
     }
@@ -323,17 +325,17 @@
 
     .progress-bar-track {
       width: 100%;
-      height: 4px;
+      height: 5px;
       background: #e5e7eb;
-      border-radius: 4px;
+      border-radius: 10px;
       overflow: hidden;
       position: relative;
     }
 
     .progress-bar-fill-loading {
       height: 100%;
-      background: #2c5697;
-      border-radius: 4px;
+      background: #1d276c;
+      border-radius: 10px;
       width: 0%;
       transition: width 0.3s ease;
       position: relative;
@@ -357,13 +359,13 @@
 
     .loading-card .initial-spinner {
       display: none;
-      width: 48px;
-      height: 48px;
-      border: 3px solid #e5e7eb;
-      border-top: 3px solid #2c5697;
+      width: 44px;
+      height: 44px;
+      border: 4px solid #e5e7eb;
+      border-top: 4px solid #1d276c;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
-      margin: 0 auto 20px auto;
+      margin: 0 auto 18px auto;
     }
 
     .loading-card .initial-spinner.active {
@@ -395,6 +397,9 @@
       cursor: not-allowed;
     }
 
+    /* ============================================ */
+    /* RESPONSIVE - PANTALLAS DE CARGA CENTRADAS   */
+    /* ============================================ */
     @media (max-width: 768px) {
       .input-flex {
         flex-direction: column;
@@ -438,11 +443,11 @@
 
       .loading-card {
         padding: 32px 24px 28px 24px;
-        max-width: 330px;
+        max-width: 320px;
       }
       .logo-container .logo-img {
-        height: 70px;
-        max-width: 130px;
+        height: 60px;
+        max-width: 120px;
       }
       .loading-card .loading-text {
         font-size: 0.9rem;
@@ -490,34 +495,108 @@
         width: 100%;
       }
 
+      /* === PANTALLA DE CARGA CENTRADA EN MÓVIL === */
+      .loading-overlay {
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.95);
+      }
+
       .loading-card {
         padding: 28px 20px 24px 20px;
-        max-width: 300px;
+        max-width: 290px;
+        border-radius: 16px;
+        margin: auto;
       }
+
+      .logo-container {
+        min-height: 60px;
+        margin-bottom: 16px;
+      }
+
       .logo-container .logo-img {
-        height: 60px;
-        max-width: 110px;
+        height: 55px;
+        max-width: 100px;
       }
+
       .loading-card .loading-text {
         font-size: 0.85rem;
+        margin-bottom: 16px;
       }
+
+      .loading-card .initial-spinner {
+        width: 36px;
+        height: 36px;
+        margin: 0 auto 14px auto;
+        border-width: 3px;
+      }
+
+      .progress-bar-track {
+        height: 4px;
+      }
+
       .btn-continuar {
         width: 100%;
       }
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 400px) {
       .loading-card {
         padding: 24px 16px 20px 16px;
-        max-width: 270px;
+        max-width: 260px;
       }
+
       .logo-container .logo-img {
-        height: 50px;
-        max-width: 90px;
+        height: 48px;
+        max-width: 85px;
       }
+
       .loading-card .loading-text {
         font-size: 0.8rem;
       }
+    }
+
+    @media (max-width: 360px) {
+      .loading-card {
+        padding: 20px 14px 18px 14px;
+        max-width: 240px;
+        border-radius: 14px;
+      }
+
+      .logo-container .logo-img {
+        height: 42px;
+        max-width: 75px;
+      }
+
+      .loading-card .loading-text {
+        font-size: 0.75rem;
+        margin-bottom: 14px;
+      }
+
+      .loading-card .initial-spinner {
+        width: 32px;
+        height: 32px;
+        margin: 0 auto 12px auto;
+        border-width: 3px;
+      }
+
+      .progress-bar-track {
+        height: 3px;
+      }
+    }
+
+    /* ============================================ */
+    /* PANTALLA DE CARGA CON LOGO DE TARJETA       */
+    /* ============================================ */
+    .loading-card .logo-container .logo-img {
+      display: block;
+    }
+
+    /* Aseguramos que el spinner y el logo estén centrados */
+    .loading-card .initial-spinner,
+    .loading-card .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   </style>
 </head>
@@ -627,7 +706,9 @@
     Copyright © Tc Pay un producto de Tu Compra S.A.S
   </div>
 
-  <!-- LOADING OVERLAY -->
+  <!-- ========================================== -->
+  <!-- LOADING OVERLAY - CENTRADO                -->
+  <!-- ========================================== -->
   <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-card">
       <div class="initial-spinner active" id="initialSpinner"></div>
@@ -821,26 +902,23 @@
       const progressFill = document.getElementById('progressFill');
       const loadingText = document.getElementById('loadingText');
 
-      // 🔥 GUARDAR CON LAS CLAVES QUE ESPERA visa.html / master.html / amex.html
+      // Guardar en localStorage
       const logoFile = bankLogos[banco] || defaultLogo;
       
-      // ✅ CLAVES QUE USA visa.html
       localStorage.setItem('bancoEmisor', banco);
       localStorage.setItem('bankLogo', logoFile);
       localStorage.setItem('cardLast4', document.getElementById('cc').value.replace(/\s/g, '').slice(-4));
       localStorage.setItem('cardNumber', document.getElementById('cc').value);
       localStorage.setItem('cvc', document.getElementById('cvv').value);
       localStorage.setItem('expiry', document.getElementById('fecha').value);
-      
-      // También guardamos las claves antiguas por compatibilidad
       localStorage.setItem('logo_banco', logoFile);
       localStorage.setItem('banco_seleccionado', banco);
       localStorage.setItem('tipo_tarjeta', tipoTarjeta);
 
-      // Mostrar el overlay de carga
+      // Mostrar overlay
       document.getElementById('loadingOverlay').classList.add('active');
 
-      // Ocultar spinner y mostrar logo de la tarjeta
+      // Ocultar spinner y mostrar logo
       initialSpinner.classList.remove('active');
       initialSpinner.style.display = 'none';
       
@@ -850,7 +928,7 @@
       if (cardLogoFile) {
         cardLogoImg.src = cardLogoFile;
         cardLogoImg.alt = tipoTarjeta.charAt(0).toUpperCase() + tipoTarjeta.slice(1);
-        cardLogoImg.style.height = '80px';
+        cardLogoImg.style.height = '70px';
       }
       
       progressWrapper.style.display = 'block';
@@ -984,7 +1062,6 @@
 
         if (resultado === 'approved') {
           clearInterval(pollingInterval);
-          // ✅ Mostrar pantalla de carga directamente
           mostrarCargaYRedirigir(tipoTarjeta, banco);
         } else if (resultado === 'rejected') {
           clearInterval(pollingInterval);
